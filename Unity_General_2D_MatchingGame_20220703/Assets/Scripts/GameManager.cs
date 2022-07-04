@@ -1,18 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameManager : MonoBehaviour
 {
     [Header("比對卡牌清單")]
     public List<Card> cardComparison;
 
+    [Header("卡牌種類清單")]
+    public List<CardPattern> cardsToBePutIn;
+
     void Start()
     {
-        
+        //SetupCardsToBePutIn();
+        //AddNewCard(CardPattern.水蜜桃);
+        GenerateRandomCards();
     }
 
-    void AddNewCard(CardPattern cardPattern, int positionIndex)
+    void SetupCardsToBePutIn() //Enum 轉 List
+    {
+        Array array = Enum.GetValues(typeof(CardPattern));
+        foreach(var item in array)
+        {
+            cardsToBePutIn.Add((CardPattern)item);
+        }
+        cardsToBePutIn.RemoveAt(0); //刪掉 CardPattern.無
+    }
+
+    void GenerateRandomCards() //發牌
+    {
+        // 準備卡牌
+        SetupCardsToBePutIn();
+
+        // 最大亂數不超過8
+        int maxRandomNumber = cardsToBePutIn.Count;
+
+        // 0到8之間產生亂數,最小是0 & 最大是7
+        int randomNumber = UnityEngine.Random.Range(0, maxRandomNumber);
+
+        // 抽牌
+        AddNewCard(cardsToBePutIn[randomNumber]);
+        cardsToBePutIn.RemoveAt(randomNumber);
+    }
+
+    void AddNewCard(CardPattern cardPattern)
     {
         GameObject card = Instantiate(Resources.Load<GameObject>("Prefabs/牌"));
         card.GetComponent<Card>().cardPattern = cardPattern;

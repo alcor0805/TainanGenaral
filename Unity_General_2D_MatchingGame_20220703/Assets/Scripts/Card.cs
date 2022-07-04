@@ -11,7 +11,7 @@ public class Card : MonoBehaviour
     private void Start()
     {
         cardState = CardState.¥¼Â½µP;
-
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         
     }
 
