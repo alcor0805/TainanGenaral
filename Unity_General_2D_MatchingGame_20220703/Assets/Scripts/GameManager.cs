@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,11 @@ public class GameManager : MonoBehaviour
 
     [Header("卡牌種類清單")]
     public List<CardPattern> cardsToBePutIn;
+
+    public Transform[] positions;
+
+    [Header("已配對的卡牌數量")]
+    public int matchedCardsCount = 0;
 
     void Start()
     {
@@ -30,25 +36,33 @@ public class GameManager : MonoBehaviour
 
     void GenerateRandomCards() //發牌
     {
-        // 準備卡牌
-        SetupCardsToBePutIn();
+        int positionIndex = 0;
+        for(int i = 0; i < 2; i++)
+        {
+            // 準備卡牌
+            SetupCardsToBePutIn();
 
-        // 最大亂數不超過8
-        int maxRandomNumber = cardsToBePutIn.Count;
+            // 最大亂數不超過8
+            int maxRandomNumber = cardsToBePutIn.Count;
+            for (int j = 0; j < maxRandomNumber; maxRandomNumber--)
+            {
+                // 0到8之間產生亂數,最小是0 & 最大是7
+                int randomNumber = UnityEngine.Random.Range(0, maxRandomNumber);
 
-        // 0到8之間產生亂數,最小是0 & 最大是7
-        int randomNumber = UnityEngine.Random.Range(0, maxRandomNumber);
-
-        // 抽牌
-        AddNewCard(cardsToBePutIn[randomNumber]);
-        cardsToBePutIn.RemoveAt(randomNumber);
+                // 抽牌
+                AddNewCard(cardsToBePutIn[randomNumber], positionIndex);
+                cardsToBePutIn.RemoveAt(randomNumber);
+                positionIndex++;
+            }
+        }        
     }
 
-    void AddNewCard(CardPattern cardPattern)
+    void AddNewCard(CardPattern cardPattern, int positionIndex)
     {
         GameObject card = Instantiate(Resources.Load<GameObject>("Prefabs/牌"));
         card.GetComponent<Card>().cardPattern = cardPattern;
         card.name = "牌_" + cardPattern.ToString();
+        card.transform.position = positions[positionIndex].position;
         //card.transform.position = positions[positionIndex].position;
 
         GameObject graphic = Instantiate(Resources.Load<GameObject>("Prefabs/圖"));
@@ -96,7 +110,14 @@ public class GameManager : MonoBehaviour
                 {
                     card.cardState = CardState.配對成功;
                 }
-                cardComparison.Clear();
+                //cardComparison.Clear();
+
+                ClearCardComparison();
+                matchedCardsCount = matchedCardsCount + 2;
+                if (matchedCardsCount >= positions.Length)
+                {
+                    StartCoroutine(ReloadScene());
+                }
             }
             else
             {
@@ -127,6 +148,12 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         TurnBackCards();
         ClearCardComparison();
+    }
+
+    IEnumerator ReloadScene()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }

@@ -635,6 +635,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardComparison: []
   cardsToBePutIn: 
+  positions:
+  - {fileID: 875280900}
+  - {fileID: 769451373}
+  - {fileID: 1640730073}
+  - {fileID: 868102943}
+  - {fileID: 1892492401}
+  - {fileID: 1570910003}
+  - {fileID: 626978607}
+  - {fileID: 368761183}
+  - {fileID: 844362277}
+  - {fileID: 1673750760}
+  - {fileID: 181880960}
+  - {fileID: 316062484}
+  - {fileID: 545142765}
+  - {fileID: 69057551}
+  - {fileID: 1146853471}
+  - {fileID: 2055803507}
+  matchedCardsCount: 0
 --- !u!4 &1870493838
 Transform:
   m_ObjectHideFlags: 0
