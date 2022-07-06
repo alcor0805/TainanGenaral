@@ -3,157 +3,158 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
-
-public class GameManager : MonoBehaviour
+namespace NRSUNG
 {
-    [Header("比對卡牌清單")]
-    public List<Card> cardComparison;
-
-    [Header("卡牌種類清單")]
-    public List<CardPattern> cardsToBePutIn;
-
-    public Transform[] positions;
-
-    [Header("已配對的卡牌數量")]
-    public int matchedCardsCount = 0;
-
-    void Start()
+    /// <summary>
+    /// 遊戲管理程式
+    /// </summary>
+    public class GameManager : MonoBehaviour
     {
-        //SetupCardsToBePutIn();
-        //AddNewCard(CardPattern.水蜜桃);
-        GenerateRandomCards();
-    }
+        [Header("比對卡牌清單")]
+        public List<Card> cardComparison;
 
-    void SetupCardsToBePutIn() //Enum 轉 List
-    {
-        Array array = Enum.GetValues(typeof(CardPattern));
-        foreach(var item in array)
+        [Header("卡牌種類清單")]
+        public List<CardPattern> cardsToBePutIn;
+
+        public Transform[] positions;
+
+        [Header("已配對的卡牌數量")]
+        public int matchedCardsCount = 0;
+
+        void Start()
         {
-            cardsToBePutIn.Add((CardPattern)item);
+            //SetupCardsToBePutIn();
+            //AddNewCard(CardPattern.水蜜桃);
+            GenerateRandomCards();
         }
-        cardsToBePutIn.RemoveAt(0); //刪掉 CardPattern.無
-    }
 
-    void GenerateRandomCards() //發牌
-    {
-        int positionIndex = 0;
-        for(int i = 0; i < 2; i++)
+        void SetupCardsToBePutIn() //Enum 轉 List
         {
-            // 準備卡牌
-            SetupCardsToBePutIn();
-
-            // 最大亂數不超過8
-            int maxRandomNumber = cardsToBePutIn.Count;
-            for (int j = 0; j < maxRandomNumber; maxRandomNumber--)
+            Array array = Enum.GetValues(typeof(CardPattern));
+            foreach (var item in array)
             {
-                // 0到8之間產生亂數,最小是0 & 最大是7
-                int randomNumber = UnityEngine.Random.Range(0, maxRandomNumber);
-
-                // 抽牌
-                AddNewCard(cardsToBePutIn[randomNumber], positionIndex);
-                cardsToBePutIn.RemoveAt(randomNumber);
-                positionIndex++;
+                cardsToBePutIn.Add((CardPattern)item);
             }
-        }        
-    }
-
-    void AddNewCard(CardPattern cardPattern, int positionIndex)
-    {
-        GameObject card = Instantiate(Resources.Load<GameObject>("Prefabs/牌"));
-        card.GetComponent<Card>().cardPattern = cardPattern;
-        card.name = "牌_" + cardPattern.ToString();
-        card.transform.position = positions[positionIndex].position;
-        //card.transform.position = positions[positionIndex].position;
-
-        GameObject graphic = Instantiate(Resources.Load<GameObject>("Prefabs/圖"));
-
-
-
-        graphic.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Graphics/" + cardPattern.ToString());
-
-
-
-        graphic.transform.SetParent(card.transform);//變成牌的子物件
-        graphic.transform.localPosition = new Vector3(0, 0, 0.1f);//設定座標
-        graphic.transform.eulerAngles = new Vector3(0, 180, 0);//順著Y軸轉180度 翻牌時不會左右顛倒
-    }
-
-    public void AddCardInCardComparision(Card card)
-    {
-        cardComparison.Add(card);
-    }
-
-    public bool ReadyToCompareCards
-    {
-        get
-        {
-            if (cardComparison.Count == 2)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            cardsToBePutIn.RemoveAt(0); //刪掉 CardPattern.無
         }
-    }
 
-    public void CompareCardsInList()
-    {
-        if (ReadyToCompareCards)
+        void AddNewCard(CardPattern cardPattern, int positionIndex)
         {
-            //Debug.Log("可以比對卡牌了");
-            if (cardComparison[0].cardPattern == cardComparison[1].cardPattern)
-            {
-                Debug.Log("兩張牌一樣");
-                foreach(var card in cardComparison)
-                {
-                    card.cardState = CardState.配對成功;
-                }
-                //cardComparison.Clear();
+            GameObject card = Instantiate(Resources.Load<GameObject>("Prefabs/牌"));
+            card.GetComponent<Card>().cardPattern = cardPattern;
+            card.name = "牌_" + cardPattern.ToString();
+            card.transform.position = positions[positionIndex].position;
+            GameObject graphic = Instantiate(Resources.Load<GameObject>("Prefabs/圖"));
+            graphic.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Graphics/" + cardPattern.ToString());
+            graphic.transform.SetParent(card.transform);//變成牌的子物件
+            graphic.transform.localPosition = new Vector3(0, 0, 0.1f);//設定座標
+            graphic.transform.eulerAngles = new Vector3(0, 180, 0);//順著Y軸轉180度 翻牌時不會左右顛倒
+        }
 
-                ClearCardComparison();
-                matchedCardsCount = matchedCardsCount + 2;
-                if (matchedCardsCount >= positions.Length)
+        void GenerateRandomCards() //發牌
+        {
+            int positionIndex = 0;
+            for (int i = 0; i < 2; i++)
+            {
+                // 準備卡牌
+                SetupCardsToBePutIn();
+
+                // 最大亂數不超過8
+                int maxRandomNumber = cardsToBePutIn.Count;
+                for (int j = 0; j < maxRandomNumber; maxRandomNumber--)
                 {
-                    StartCoroutine(ReloadScene());
+                    // 0到8之間產生亂數,最小是0 & 最大是7
+                    int randomNumber = UnityEngine.Random.Range(0, maxRandomNumber);
+
+                    // 抽牌
+                    AddNewCard(cardsToBePutIn[randomNumber], positionIndex);
+                    cardsToBePutIn.RemoveAt(randomNumber);
+                    positionIndex++;
                 }
             }
-            else
+        }
+
+        
+
+        public void AddCardInCardComparision(Card card)
+        {
+            cardComparison.Add(card);
+        }
+
+        public bool ReadyToCompareCards
+        {
+            get
             {
-                Debug.Log("兩張牌不一樣");
-                StartCoroutine(MissMatchCards());
-                //TurnBackCards();
-                //cardComparison.Clear();
+                if (cardComparison.Count == 2)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
-    }
 
-    void ClearCardComparison()  //清除翻牌清單
-    {
-        cardComparison.Clear();     
-    }
-
-    void TurnBackCards()    //把牌翻回去
-    {
-        foreach(var card in cardComparison)
+        public void CompareCardsInList()
         {
-            card.gameObject.transform.eulerAngles = Vector3.zero;
-            card.cardState = CardState.未翻牌;
+            if (ReadyToCompareCards)
+            {
+                //Debug.Log("可以比對卡牌了");
+                if (cardComparison[0].cardPattern == cardComparison[1].cardPattern)
+                {
+                    Debug.Log("兩張牌一樣");
+                    foreach (var card in cardComparison)
+                    {
+                        card.cardState = CardState.配對成功;
+                    }
+                    //cardComparison.Clear();
+
+                    ClearCardComparison();
+                    matchedCardsCount = matchedCardsCount + 2;
+                    if (matchedCardsCount >= positions.Length)
+                    {
+                        StartCoroutine(ReloadScene());
+                    }
+                }
+                else
+                {
+                    Debug.Log("兩張牌不一樣");
+                    StartCoroutine(MissMatchCards());
+                    //TurnBackCards();
+                    //cardComparison.Clear();
+                }
+            }
         }
-    }
 
-    IEnumerator MissMatchCards()
-    {
-        yield return new WaitForSeconds(1.5f);
-        TurnBackCards();
-        ClearCardComparison();
-    }
+        void ClearCardComparison()  //清除翻牌清單
+        {
+            cardComparison.Clear();
+        }
 
-    IEnumerator ReloadScene()
-    {
-        yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+        void TurnBackCards()    //把牌翻回去
+        {
+            foreach (var card in cardComparison)
+            {
+                card.gameObject.transform.eulerAngles = Vector3.zero;
+                card.cardState = CardState.未翻牌;
+            }
+        }
 
+        IEnumerator MissMatchCards()
+        {
+            yield return new WaitForSeconds(1.5f);
+            TurnBackCards();
+            ClearCardComparison();
+        }
+
+        IEnumerator ReloadScene()
+        {
+            yield return new WaitForSeconds(3);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+    }
 }
+
+

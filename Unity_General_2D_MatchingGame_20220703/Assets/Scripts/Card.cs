@@ -2,50 +2,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card : MonoBehaviour
+namespace NRSUNG
 {
-    public CardState cardState;
-    public CardPattern cardPattern;
-    public GameManager gameManager;
-
-    private void Start()
+    /// <summary>
+    /// 卡牌管理程式
+    /// </summary>
+    public class Card : MonoBehaviour
     {
-        cardState = CardState.未翻牌;
-        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        
-    }
+        public CardState cardState;
+        public CardPattern cardPattern;
+        public GameManager gameManager;
 
-    private void OnMouseUp()
-    {
-        if (cardState.Equals(CardState.已翻牌))
+        private void Start()
         {
-            return;
+            cardState = CardState.未翻牌;
+            gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+
         }
 
-        if (gameManager.ReadyToCompareCards)
+        private void OnMouseUp()
         {
-            return;
+            if (cardState.Equals(CardState.已翻牌))
+            {
+                return;
+            }
+
+            if (gameManager.ReadyToCompareCards)
+            {
+                return;
+            }
+            OpenCard();
+            gameManager.AddCardInCardComparision(this);
+            gameManager.CompareCardsInList();
         }
-        OpenCard();
-        gameManager.AddCardInCardComparision(this);
-        gameManager.CompareCardsInList();
+
+        void OpenCard()
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+            cardState = CardState.已翻牌;
+        }
+
     }
 
-    void OpenCard()
+    public enum CardState
     {
-        transform.eulerAngles = new Vector3(0, 180, 0);
-        cardState = CardState.已翻牌;
+        未翻牌, 已翻牌, 配對成功
     }
 
+
+    public enum CardPattern
+    {
+        無, 奇異果, 柳橙, 橘子, 水蜜桃, 芭樂, 葡萄, 蘋果, 西瓜
+    }
 }
 
-public enum CardState
-{
-    未翻牌,已翻牌,配對成功
-}
-
-
-public enum CardPattern
-{
-    無,奇異果,柳橙,橘子,水蜜桃,芭樂,葡萄,蘋果,西瓜
-}
