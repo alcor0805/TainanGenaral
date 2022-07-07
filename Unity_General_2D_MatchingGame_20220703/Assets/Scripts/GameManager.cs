@@ -10,6 +10,9 @@ namespace NRSUNG
     /// </summary>
     public class GameManager : MonoBehaviour
     {
+        [Header("卡牌清單")]
+        public List<Card> cardList;
+
         [Header("比對卡牌清單")]
         public List<Card> cardComparison;
 
@@ -44,6 +47,7 @@ namespace NRSUNG
             card.GetComponent<Card>().cardPattern = cardPattern;
             card.name = "牌_" + cardPattern.ToString();
             card.transform.position = positions[positionIndex].position;
+            //cardList.Add = card.name;
             GameObject graphic = Instantiate(Resources.Load<GameObject>("Prefabs/圖"));
             graphic.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Graphics/" + cardPattern.ToString());
             graphic.transform.SetParent(card.transform);//變成牌的子物件
@@ -63,10 +67,11 @@ namespace NRSUNG
                 int maxRandomNumber = cardsToBePutIn.Count;
                 for (int j = 0; j < maxRandomNumber; maxRandomNumber--)
                 {
+                    // 抽牌
                     // 0到8之間產生亂數,最小是0 & 最大是7
                     int randomNumber = UnityEngine.Random.Range(0, maxRandomNumber);
 
-                    // 抽牌
+                    
                     AddNewCard(cardsToBePutIn[randomNumber], positionIndex);
                     cardsToBePutIn.RemoveAt(randomNumber);
                     positionIndex++;
@@ -137,6 +142,26 @@ namespace NRSUNG
             foreach (var card in cardComparison)
             {
                 card.gameObject.transform.eulerAngles = Vector3.zero;
+                card.cardState = CardState.未翻牌;
+            }
+        }
+
+        void TurnOpenAllCards()    //把全部牌翻到正面
+        {
+            foreach (var card in cardList)
+            {
+                //card.gameObject.transform.eulerAngles = Vector3.zero;
+                card.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
+                card.cardState = CardState.已翻牌;
+            }
+        }
+
+        void TurnBackAllCards()    //把全部牌翻到背面
+        {
+            foreach (var card in cardList)
+            {
+                //card.gameObject.transform.eulerAngles = Vector3.zero;
+                card.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
                 card.cardState = CardState.未翻牌;
             }
         }
