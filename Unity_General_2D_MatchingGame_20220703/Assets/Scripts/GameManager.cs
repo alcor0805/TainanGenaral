@@ -11,13 +11,13 @@ namespace NRSUNG
     public class GameManager : MonoBehaviour
     {
         [Header("卡牌清單")]
-        public List<Card> cardList;
+        public List<Card> cardList;  //產生出來的16張卡牌清單
 
         [Header("比對卡牌清單")]
-        public List<Card> cardComparison;
+        public List<Card> cardComparison;  //欲比對的卡牌清單
 
         [Header("卡牌種類清單")]
-        public List<CardPattern> cardsToBePutIn;
+        public List<CardPattern> cardsToBePutIn; //水果清單
 
         public Transform[] positions;
 
@@ -37,8 +37,11 @@ namespace NRSUNG
             foreach (var item in array)
             {
                 cardsToBePutIn.Add((CardPattern)item);
+                print(item);
             }
+            
             cardsToBePutIn.RemoveAt(0); //刪掉 CardPattern.無
+            
         }
 
         void AddNewCard(CardPattern cardPattern, int positionIndex)
@@ -47,7 +50,7 @@ namespace NRSUNG
             card.GetComponent<Card>().cardPattern = cardPattern;
             card.name = "牌_" + cardPattern.ToString();
             card.transform.position = positions[positionIndex].position;
-            //cardList.Add = card.name;
+            //cardList.Add(cardPattern);
             GameObject graphic = Instantiate(Resources.Load<GameObject>("Prefabs/圖"));
             graphic.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Graphics/" + cardPattern.ToString());
             graphic.transform.SetParent(card.transform);//變成牌的子物件
@@ -58,7 +61,7 @@ namespace NRSUNG
         void GenerateRandomCards() //發牌
         {
             int positionIndex = 0;
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 1; i++)
             {
                 // 準備卡牌
                 SetupCardsToBePutIn();
@@ -73,6 +76,8 @@ namespace NRSUNG
 
                     
                     AddNewCard(cardsToBePutIn[randomNumber], positionIndex);
+                    //cardList.Add(cardsToBePutIn[randomNumber]);
+                    //print(cardsToBePutIn[randomNumber]);
                     cardsToBePutIn.RemoveAt(randomNumber);
                     positionIndex++;
                 }
