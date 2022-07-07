@@ -61,7 +61,7 @@ namespace NRSUNG
         void GenerateRandomCards() //發牌
         {
             int positionIndex = 0;
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < 2; i++)
             {
                 // 準備卡牌
                 SetupCardsToBePutIn();
