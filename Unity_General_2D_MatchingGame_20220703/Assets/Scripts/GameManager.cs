@@ -50,12 +50,13 @@ namespace NRSUNG
             card.GetComponent<Card>().cardPattern = cardPattern;
             card.name = "牌_" + cardPattern.ToString();
             card.transform.position = positions[positionIndex].position;
-            //cardList.Add(cardPattern);
+            //AddCardInCardComparision(this);
             GameObject graphic = Instantiate(Resources.Load<GameObject>("Prefabs/圖"));
             graphic.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Graphics/" + cardPattern.ToString());
             graphic.transform.SetParent(card.transform);//變成牌的子物件
             graphic.transform.localPosition = new Vector3(0, 0, 0.1f);//設定座標
             graphic.transform.eulerAngles = new Vector3(0, 180, 0);//順著Y軸轉180度 翻牌時不會左右顛倒
+            
         }
 
         void GenerateRandomCards() //發牌
@@ -76,6 +77,7 @@ namespace NRSUNG
 
                     
                     AddNewCard(cardsToBePutIn[randomNumber], positionIndex);
+                    //AddCardInCardComparision();
                     //cardList.Add(cardsToBePutIn[randomNumber]);
                     //print(cardsToBePutIn[randomNumber]);
                     cardsToBePutIn.RemoveAt(randomNumber);
@@ -135,6 +137,11 @@ namespace NRSUNG
                     //cardComparison.Clear();
                 }
             }
+        }
+
+        void AddAllCardsToList(Card card)
+        {
+            cardComparison.Add(card);
         }
 
         void ClearCardComparison()  //清除翻牌清單

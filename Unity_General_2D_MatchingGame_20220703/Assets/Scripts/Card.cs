@@ -34,6 +34,7 @@ namespace NRSUNG
             OpenCard();
             gameManager.AddCardInCardComparision(this);
             gameManager.CompareCardsInList();
+            
         }
 
         void OpenCard()
