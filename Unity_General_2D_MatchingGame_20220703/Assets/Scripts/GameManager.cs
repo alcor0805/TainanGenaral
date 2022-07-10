@@ -10,8 +10,9 @@ namespace NRSUNG
     /// </summary>
     public class GameManager : MonoBehaviour
     {
-        [Header("卡牌清單")]
-        public List<Card> cardList;  //產生出來的16張卡牌清單
+        public GameManager gameManager;
+        //[Header("卡牌清單")]
+        //public List<Card> cardList;  //產生出來的16張卡牌清單
 
         [Header("比對卡牌清單")]
         public List<Card> cardComparison;  //欲比對的卡牌清單
@@ -29,6 +30,7 @@ namespace NRSUNG
             //SetupCardsToBePutIn();
             //AddNewCard(CardPattern.水蜜桃);
             GenerateRandomCards();
+            //OpenAllCards();
         }
 
         void SetupCardsToBePutIn() //Enum 轉 List
@@ -37,7 +39,7 @@ namespace NRSUNG
             foreach (var item in array)
             {
                 cardsToBePutIn.Add((CardPattern)item);
-                print(item);
+                //print(item);
             }
             
             cardsToBePutIn.RemoveAt(0); //刪掉 CardPattern.無
@@ -158,17 +160,17 @@ namespace NRSUNG
             }
         }
 
-        void TurnOpenAllCards()    //把全部牌翻到正面
+        /*void OpenAllCards()    //把全部牌翻到正面
         {
-            foreach (var card in cardList)
+            foreach (var card in gameManager.positions)
             {
                 //card.gameObject.transform.eulerAngles = Vector3.zero;
-                card.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
-                card.cardState = CardState.已翻牌;
+                card.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+                //card.cardState = CardState.已翻牌;
             }
-        }
+        }*/
 
-        void TurnBackAllCards()    //把全部牌翻到背面
+        /*void TurnBackAllCards()    //把全部牌翻到背面
         {
             foreach (var card in cardList)
             {
@@ -176,7 +178,7 @@ namespace NRSUNG
                 card.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
                 card.cardState = CardState.未翻牌;
             }
-        }
+        }*/
 
         IEnumerator MissMatchCards()
         {

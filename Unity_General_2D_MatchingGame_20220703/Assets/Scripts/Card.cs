@@ -22,7 +22,7 @@ namespace NRSUNG
 
         private void OnMouseUp()
         {
-            if (cardState.Equals(CardState.已翻牌))
+            if (cardState.Equals(CardState.已翻牌) || cardState.Equals(CardState.配對成功))
             {
                 return;
             }
