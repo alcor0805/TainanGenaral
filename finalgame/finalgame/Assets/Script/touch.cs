@@ -1,32 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
-<<<<<<< Updated upstream
-namespace Alcor 
-=======
 using TMPro;
 namespace Alcor
->>>>>>> Stashed changes
 {
     public class touch : MonoBehaviour
     {
         #region 資料
-<<<<<<< Updated upstream
-        private GameObject square;
-        [SerializeField]
-        private Text dialogtext;
-        [SerializeField]
-        private GameObject dialog;
-        #endregion
-        #region 功能
-        #endregion
-        #region 事件
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.gameObject.CompareTag("Player") && other.GetType().ToString() == "UnityEngine.CircleCollider2D")
-            {
-                dialog.SetActive (true);
-                dialogtext.text="can you help me??";
-=======
 
         private GameObject square;
         [SerializeField]
@@ -66,7 +45,6 @@ namespace Alcor
 
 
 
->>>>>>> Stashed changes
             }
 
         }
@@ -74,12 +52,6 @@ namespace Alcor
         {
             if (other.gameObject.CompareTag("Player") && other.GetType().ToString() == "UnityEngine.CircleCollider2D")
             {
-<<<<<<< Updated upstream
-                dialog.SetActive(false);
-                
-            }
-        }
-=======
                 canvas.alpha = 0;
                 canvas.interactable = false;
                 canvas.blocksRaycasts = false;
@@ -87,7 +59,6 @@ namespace Alcor
             }
         }
 
->>>>>>> Stashed changes
         #endregion
 
     }

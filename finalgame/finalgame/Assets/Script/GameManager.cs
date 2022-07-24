@@ -8,14 +8,12 @@ namespace Alcor
     {
         #region 資料
         public List<card> cardComparison;
-        [SerializeField]
-        private GameObject back;
  
         #endregion
         #region 功能
         void AddNewCard(card.CardStyle cardstyle)
         {
-            GameObject card = Instantiate(back) ;
+            GameObject card = Instantiate(Resources.Load<GameObject>("prefebs/back"));
             card.GetComponent<card>().cardStyle = cardstyle;
             card.name = "牌_" ;
             /*GameObject graphic = Instantiate(Resources.Load<GameObject>("prefebs/picture"));
