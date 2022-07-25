@@ -6,13 +6,14 @@ using UnityEngine.SceneManagement;
 
 namespace NRSUNG
 {
-    public class GameManager : MonoBehaviour
+    public class GM_GuessNumber : MonoBehaviour
     {
         public InputField playerAnswerUI;
         public int playerAnswer;
         public int correctAnswer;
         public Text hintMessage;
         public Button restartButton;
+        public Button exit;
         //public TextMesh hintMessage;
         //public Texture hintMessage;
 
