@@ -13,6 +13,7 @@ namespace NRSUNG
         public int correctAnswer;
         public Text hintMessage;
         public Button restartButton;
+        public Button exitButton;
         //public TextMesh hintMessage;
         //public Texture hintMessage;
 
@@ -39,6 +40,7 @@ namespace NRSUNG
             UpdateHintMessage("請輸入 0~99 的數字");
             correctAnswer = Random.Range(0, 100);
             restartButton.gameObject.SetActive(false);
+            exitButton.gameObject.SetActive(false);
         }
 
         bool CanGetInputNumber()
@@ -59,6 +61,7 @@ namespace NRSUNG
             {
                 UpdateHintMessage("恭喜你答對了");
                 restartButton.gameObject.SetActive(true);
+                exitButton.gameObject.SetActive(true);
             }
             else if (playerAnswer > correctAnswer)
             {
@@ -80,6 +83,11 @@ namespace NRSUNG
         {
             Scene scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(scene.name);
+        }
+
+        public void ExitScene()
+        {
+            SceneManager.LoadScene(0);
         }
 
         void FocusPlayerAnswerUI()
