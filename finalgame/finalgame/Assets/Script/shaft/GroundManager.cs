@@ -12,8 +12,8 @@ namespace Alcor
         #endregion
         #region ¨Æ¥ó
         public List<Transform> grounds;
-        readonly float leftBorder = -3;
-        readonly float rightBorder = 3;
+        readonly float leftBorder = -9.5f;
+        readonly float rightBorder = 9.5f;
         readonly float initPosotionY = 0;
         readonly int MIN_GROUND_COUNT_UNDER_PLAYER = 3;
         [Range(2, 6)] public float spacingY;
