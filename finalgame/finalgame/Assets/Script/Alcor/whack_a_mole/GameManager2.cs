@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
-
+using UnityEngine.SceneManagement;
 namespace Alcor
 {
     public class GameManager2 : MonoBehaviour
@@ -13,6 +13,8 @@ namespace Alcor
         private float countDownShowMonsterSeconds;
         int MAX_MONSTERS_ON_SCREEN = 3;
         public List<monster> monsters;
+        public bool wolf_dead;
+        public GameObject setting;
         private List<monster> HiddenMonsters
         {
             get
@@ -72,6 +74,7 @@ namespace Alcor
         #region ¨Æ¥ó
         private void Start()
         {
+            wolf_dead = false;
             InitScore();
             InitMonsterList();
             HideAllMonsters();
@@ -101,7 +104,10 @@ namespace Alcor
         private void FixedUpdate()
         {
             TryCountDownToShowMonster();
-
+            if(scoreNumber==100)
+            {
+                setting.SetActive(true);
+            }
         }
         bool CountDownShowMonsterTimeUp => countDownShowMonsterSeconds <= 0;
         bool MonstersOnScreenAreFull => MonsterCountOnScreen >= MAX_MONSTERS_ON_SCREEN;
@@ -116,7 +122,15 @@ namespace Alcor
             }
         }
 
-
+        public void Main()
+        {
+            wolf_dead = true;
+            SceneManager.LoadScene(0);
+        }
+        public void reload_wolf()
+        {
+            SceneManager.LoadScene(2);
+        }
 
 
 

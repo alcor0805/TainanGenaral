@@ -16,8 +16,11 @@ namespace Alcor
         public GameObject gameObject;
         public GameObject player;
         public CameraManager cameraManager;
+        public static bool dead;
+
         private void Start()
         {
+            dead = false;
             gameObject.SetActive(false);
         }
         private void Update()
@@ -36,6 +39,7 @@ namespace Alcor
         }
         public void MainScene()
         {
+            dead = true;
             SceneManager.LoadScene(0);
         }
         #endregion

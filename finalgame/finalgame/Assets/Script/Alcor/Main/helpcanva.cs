@@ -5,11 +5,28 @@ namespace Alcor
 {
     public class helpcanva : MonoBehaviour
     {
+        [SerializeField, Header("player")]
+        private Transform player;
         [SerializeField,Header("幫助文字")]
         private TextMeshProUGUI helptext;
         [SerializeField]
         private CanvasGroup helpcanvas;
+        private Vector3 x=new Vector3(0,0,0);
         public string inputtext;
+        private void Awake()
+        {
+            if (!GameManager_shaft.dead)
+            {
+                PlayerPrefs.SetFloat("square", 0);
+            }
+            else
+            {
+                x = Vector3.right * PlayerPrefs.GetFloat("square");
+                player.position = x; 
+            }
+
+            Debug.Log("目前位置:"+PlayerPrefs.GetFloat("Square"));
+        }
         private void Start()
         {
             helptext.text = inputtext;
@@ -25,9 +42,17 @@ namespace Alcor
                 CancelInvoke("Fadein");
             }
         }
-        public void AnotherScene()
+        public void ShaftScene()
         {
-            SceneManager.LoadScene(1);  
+            PlayerPrefs.SetFloat("square", player.position.x);
+            SceneManager.LoadScene(1);
+            
+
+        }
+        public void Card()
+        {
+            PlayerPrefs.SetFloat("square", player.position.x);
+            SceneManager.LoadScene(4);
         }
     }
 }
