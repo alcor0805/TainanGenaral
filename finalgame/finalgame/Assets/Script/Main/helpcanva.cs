@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 namespace Alcor 
 {
     public class helpcanva : MonoBehaviour
@@ -23,6 +24,10 @@ namespace Alcor
                 helpcanvas.blocksRaycasts = true;
                 CancelInvoke("Fadein");
             }
+        }
+        public void AnotherScene()
+        {
+            SceneManager.LoadScene(1);  
         }
     }
 }
