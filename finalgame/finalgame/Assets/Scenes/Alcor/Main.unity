@@ -5758,9 +5758,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 290157804}
-        m_TargetAssemblyTypeName: Alcor.touch, Assembly-CSharp
-        m_MethodName: YesEvent
+      - m_Target: {fileID: 1170579550}
+        m_TargetAssemblyTypeName: Alcor.helpcanva, Assembly-CSharp
+        m_MethodName: AnotherScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6164,7 +6164,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7785017, y: 1}
+    m_SensorSize: {x: 1.7771605, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

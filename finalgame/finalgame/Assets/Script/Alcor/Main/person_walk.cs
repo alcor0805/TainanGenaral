@@ -19,7 +19,7 @@ namespace Alcor
             float h = Input.GetAxisRaw("Horizontal");
             float v = Input.GetAxisRaw("Vertical");
             move.Set(h,0f,v);
-            move = move.normalized * 10 * Time.deltaTime;
+            move = move.normalized * 20 * Time.deltaTime;
             circle.MovePosition(circle.transform.position+move);
         }
         #endregion

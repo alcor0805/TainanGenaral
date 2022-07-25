@@ -13,24 +13,28 @@ namespace Alcor
         #region 功能
         #endregion
         #region 事件
-        public Button button;
+        public GameObject gameObject;
         public GameObject player;
         public CameraManager cameraManager;
         private void Start()
         {
-            button.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
         private void Update()
         {
             if (Player.isDead)
             {
                 player.SetActive(false);
-                button.gameObject.SetActive(true);
+                gameObject.SetActive(true);
                 cameraManager.enabled = false;
                 Player.isDead = false;
             }
         }
         public void ReloadScene() 
+        {
+            SceneManager.LoadScene(1);
+        }
+        public void MainScene()
         {
             SceneManager.LoadScene(0);
         }
