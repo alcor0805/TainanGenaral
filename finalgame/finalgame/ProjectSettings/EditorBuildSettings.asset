@@ -18,9 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Alcor/whack-a-mole.unity
     guid: f71d88c6b3ceeb74d95896faf131a7de
   - enabled: 1
-    path: "Assets/Scenes/nrSung/\u4E3B\u756B\u9762.unity"
+    path: "Assets/NRSUNG/\u5834\u666F/\u731C\u6578\u5B57.unity"
     guid: 158ffd4c6af63124b85b39f7f734af75
   - enabled: 1
-    path: "Assets/Scenes/nrSung/\u7FFB\u724C\u904A\u6232.unity"
+    path: "Assets/NRSUNG/\u5834\u666F/\u7FFB\u724C\u904A\u6232.unity"
     guid: 4d8f54a7e83a3394a9088983b9a86c00
   m_configObjects: {}
