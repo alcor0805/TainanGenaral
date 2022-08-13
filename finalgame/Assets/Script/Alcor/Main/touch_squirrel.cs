@@ -13,8 +13,6 @@ namespace Alcor
         [SerializeField]
         private TextMeshProUGUI dialogtext;
         [SerializeField]
-        private helpcanva_squirrel helpcanva;
-        [SerializeField]
         private GameObject canvas;
         #endregion
         #region е\пр
@@ -33,9 +31,7 @@ namespace Alcor
             if (other.gameObject.CompareTag("Player")) 
             {
                 person_Walk.enabled = false;
-                helpcanva.inputtext = "can you help me??";
                 canvas.SetActive(true);
-                helpcanva.enabled = true;
 
 
 
