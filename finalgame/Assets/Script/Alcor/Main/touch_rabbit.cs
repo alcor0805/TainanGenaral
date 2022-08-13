@@ -13,9 +13,14 @@ namespace Alcor
         [SerializeField]
         private TextMeshProUGUI dialogtext;
         [SerializeField]
-        private helpcanva_rabbit helpcanva;
-        [SerializeField]
         private GameObject canvas;
+        [SerializeField]
+        private DialogSystem dialogSystem;
+        [SerializeField]
+        private DataNPC dataNPC;
+        public int Num = 0;
+        public int CurrentChapter = 0;
+
         #endregion
         #region 功能
         public void NOEvent()
@@ -26,20 +31,19 @@ namespace Alcor
         #endregion
         #region 事件
 
+      
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.CompareTag("Player")) 
             {
+                dataNPC.ID = Num;
+                dataNPC.IndexPart = CurrentChapter;
                 person_Walk.enabled = false;
-                helpcanva.inputtext = "can you help me??";
                 canvas.SetActive(true);
-                helpcanva.enabled = true;
-
-
-
             }
 
         }
+
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.gameObject.CompareTag("Player") && other.GetType().ToString() == "UnityEngine.CircleCollider2D")
