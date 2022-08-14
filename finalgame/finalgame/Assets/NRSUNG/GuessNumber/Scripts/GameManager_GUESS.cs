@@ -18,7 +18,6 @@ namespace NRSUNG
         public int m_sec;
         public Button restartButton;
         public Button exitButton;
-        private bool gameOver;
         private bool timeOut;
         //public TextMesh hintMessage;
         //public Texture hintMessage;
@@ -37,6 +36,11 @@ namespace NRSUNG
             CheckTimeOut();
         }
 
+        void WaitForStart()
+        {
+
+        }
+
         void CheckTimeOut()
         {
             if (timeOut)
@@ -47,7 +51,6 @@ namespace NRSUNG
                 gameOverMessage.gameObject.SetActive(true);
                 restartButton.gameObject.SetActive(true);
                 exitButton.gameObject.SetActive(true);
-                //StopAllCoroutines();
             }
         }
 
@@ -70,7 +73,7 @@ namespace NRSUNG
             exitButton.gameObject.SetActive(false);
             gameOverMessage.gameObject.SetActive(false);
             playerAnswerUI.gameObject.SetActive(true);
-            gameOver = false;
+            
         }
 
         bool CanGetInputNumber()
@@ -152,7 +155,7 @@ namespace NRSUNG
                 m_timmer.text= string.Format($"{m_min.ToString("00")}" + " : " + $"{m_sec.ToString("00")}");
             }
             timeOut = true;
-            //yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1);
             //Time.timeScale = 0;
         }
     }
