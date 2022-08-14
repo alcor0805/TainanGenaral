@@ -1,9 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
-using UnityEngine.SceneManagement;
+using TMPro;
+
 namespace Alcor
 {
     public class GameManager2 : MonoBehaviour
@@ -33,6 +33,12 @@ namespace Alcor
         }
         public Text score;
         int scoreNumber = 0;
+        [SerializeField, Header("標題文字")]
+        private TextMeshProUGUI final_text;
+        [SerializeField, Header("已過去時間文字")]
+        private TextMeshProUGUI Time_text;
+        private float Timing;
+        public static wolfState wolfstate=wolfState.fail;
         #endregion
         #region 功能
         public void HideMonster(GameObject monster)
@@ -74,14 +80,22 @@ namespace Alcor
         #region 事件
         private void Start()
         {
+            InvokeRepeating("CountTime", 1f, 1f);
+            wolfstate = wolfState.fail;
             wolf_dead = false;
             InitScore();
             InitMonsterList();
             HideAllMonsters();
-            //ShowRandomMonster();
             ResetShowMonsterSeconds();
         }
-
+        /// <summary>
+        /// 計時器
+        /// </summary>
+        private void CountTime()
+        {
+            Timing += 1;
+            Time_text.text = "已過去 "+Timing.ToString()+" 秒";
+        }
         private void ResetShowMonsterSeconds()
         {
             countDownShowMonsterSeconds = showMonsterIntervalSeconds;
@@ -104,9 +118,19 @@ namespace Alcor
         private void FixedUpdate()
         {
             TryCountDownToShowMonster();
-            if(scoreNumber==100)
+            if(scoreNumber==100||Timing>=20)
             {
                 setting.SetActive(true);
+                if (scoreNumber==100)
+                {
+                    wolfstate = wolfState.sucess;
+                    final_text.text = "恭喜過關";
+                }
+                else
+                {
+                    wolfstate = wolfState.fail;
+                    final_text.text = "失敗啦!再重來一次吧!";
+                }
             }
         }
         bool CountDownShowMonsterTimeUp => countDownShowMonsterSeconds <= 0;
@@ -122,19 +146,13 @@ namespace Alcor
             }
         }
 
-        public void Main()
+
+        public enum wolfState {sucess,fail }
+
+        public void SetIsDead()
         {
-            wolf_dead = true;
-            SceneManager.LoadScene(0);
+          wolf_dead = true;
         }
-        public void reload_wolf()
-        {
-            SceneManager.LoadScene(2);
-        }
-
-
-
-
 
         #endregion
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 namespace Alcor
@@ -35,6 +36,7 @@ namespace Alcor
         {
             ControlSpawnGround();
             DisplayCountFloor();
+            
         }
         public void ControlSpawnGround() 
         {
@@ -71,16 +73,17 @@ namespace Alcor
             groundNumber++;
             newGround.name = "地板" + groundNumber;
         }
-        float CountLowerGroundFloor() 
+        public float CountLowerGroundFloor() 
         {
             float playerPositionY = player.transform.position.y;
             float deep = Mathf.Abs(initPosotionY - playerPositionY);
-            return (deep / singleFloorHeight) + 1;
+            return deep;
+            
         }
 
         void DisplayCountFloor() 
         {
-            displayCountFloor.text = "地下" + CountLowerGroundFloor().ToString() ;
+            displayCountFloor.text = "地下" + CountLowerGroundFloor().ToString("0000") ;
         }
         float NewGroundPositionX ()
         {

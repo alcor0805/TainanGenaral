@@ -7,9 +7,12 @@ namespace Alcor
     {
         public void ChanageScene(string name)
         {
-            PlayerPrefs.SetFloat("PlayerPosX",GameObject.FindGameObjectWithTag("Player").transform.position.x );
-            SceneManager.LoadScene(name);
             
+            SceneManager.LoadScene(name);
+        }
+        public void GetPlayerPosition()
+        {
+            PlayerPrefs.SetFloat("PlayerPosX", GameObject.FindGameObjectWithTag("Player").transform.position.x);
         }
     }
 

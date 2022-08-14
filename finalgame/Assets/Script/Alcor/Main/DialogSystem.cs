@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -21,31 +20,56 @@ namespace Alcor
         int index_Chapter = 0;
         int index_sentence = 0;
         int index_chapter_sentence = 0;
-        DataNPC current_dataNPC;
+        public GameObject dialog;
+        private GameObject NPC;
+        private person_walk Role;
         /// <summary>
-        /// 設置文本資訊為dictionary(0,0)
+        /// 判斷是誰的名字，如果符合就使用儲存的static state抉擇讀取章節
         /// </summary>
-        public void SetDialogInfo(int NPC, int Chapter)
+        public void TheChapter()
         {
-            Npc_ID = NPC;
-            index_Chapter = Chapter;
-            current_dataNPC = System_npc[NPC];
-            Initialize();
-            isDailog = true;
+            switch (dialog.name)
+            {
+                case "兔子":
+                    {
+                        NPC = GameObject.Find(dialog.name);
+                        if (GameManager_shaft.state == GameManager_shaft.State.fail)
+                        {
+                            index_Chapter = 0;
+                        }
+                        if (GameManager_shaft.state == GameManager_shaft.State.sucess)
+                        {
+                            index_Chapter = 1;
+                        }
+                        break;
+                    }
+                case "松鼠":
+                    {
+                        NPC = GameObject.Find(dialog.name);
+                        if (GameManager2.wolfstate == GameManager2.wolfState.fail)
+                        {
+                            index_Chapter = 0;
+                        }
+                        if (GameManager2.wolfstate == GameManager2.wolfState.sucess)
+                        {
+                            index_Chapter = 1;
+                        }
+                        break;
+                    }
+
+            }
+
+
         }
-        /// <summary>
-        /// 初始化
-        /// </summary>
-        public void Initialize()
-        {
-            index_sentence = 0;
-            index_chapter_sentence = 0;
-        }
+
+
         /// <summary>
         /// 將劇本內容全部存入dictionary中
         /// </summary>
         private void Awake()
         {
+            Role = GameObject.FindGameObjectWithTag("Player").GetComponent<person_walk>();
+            TheChapter();
             isDailog = true;
             foreach (DataNPC data in all_Dialog)
             {
@@ -57,27 +81,9 @@ namespace Alcor
         /// <summary>
         /// 如果在對話中，列出文本內容
         /// </summary>
-        /*public IEnumerator StartDialog(DataNPC _dataNPC)
-         {
-             _dataNPC = current_dataNPC;
-             if (isDailog)
-             {
-                 StartDialog();
-                 for (int i = 0; i < ChapterSentence().Length; i++)
-                 {
-                     yield return StartCoroutine(TypeEffect(i));
-                     while(!Input.GetKeyDown(KeyCode.E))
-                     {
-                         yield return null;
-                     }
-
-                 }
-
-             }
-         }*/
         private void Update()
         {
-            if(isDailog)
+            if (isDailog)
             {
                 canvasGroup.interactable = true;
                 canvasGroup.blocksRaycasts = true;
@@ -115,12 +121,41 @@ namespace Alcor
             }
             if (index_chapter_sentence >= Max_Chapter_sentence)
             {
-                isDailog = false;
-                button_event.SetActive(true);
+                if (index_Chapter == 0)
+                {
+                    isDailog = false;
+                    button_event.SetActive(true);
+                }
+                else if (index_Chapter == 1)
+                {
+                    isDailog = false;
+                    dialog.SetActive(false);
+                    NPC.SetActive(false);
+                    Role.enabled = true;
+                    Gift();
+                }
+
             }
             return current_content;
         }
+        private void Gift()
+        {
+            switch (dialog.name)
+            {
+                case "兔子":
 
+                    GameObject carrot = Instantiate(Resources.Load<GameObject>("carrot"));
+                    carrot.transform.position = new Vector3(NPC.transform.position.x,-3.15f,0);
+                    carrot.name = "胡蘿蔔";
+                    break;
+                case "松鼠":
+
+                    GameObject apple = Instantiate(Resources.Load<GameObject>("apple"));
+                    apple.transform.position = new Vector3(NPC.transform.position.x, -3.9f, 0);
+                    apple.name = "蘋果";
+                    break;
+            }
+        }
 
     }
 }

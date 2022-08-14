@@ -7,15 +7,11 @@ namespace Alcor
     {
         #region 資料
 
-       
+
         [SerializeField]
         private person_walk person_Walk;
         [SerializeField]
-        private TextMeshProUGUI dialogtext;
-        [SerializeField]
         private GameObject canvas;
-        [SerializeField]
-        private DialogSystem dialogSystem;
         [SerializeField]
         private DataNPC dataNPC;
         public int Num = 0;
@@ -31,10 +27,10 @@ namespace Alcor
         #endregion
         #region 事件
 
-      
+
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.CompareTag("Player")) 
+            if (other.gameObject.CompareTag("Player"))
             {
                 dataNPC.ID = Num;
                 dataNPC.IndexPart = CurrentChapter;
@@ -56,4 +52,3 @@ namespace Alcor
 
     }
 }
-

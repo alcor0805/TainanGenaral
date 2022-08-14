@@ -5,6 +5,8 @@ namespace Alcor
 {
     public class PlayerPosition : MonoBehaviour
     {
+        private bool rabbit = GameManager_shaft.dead;
+        private bool squirell = GameManager2.wolf_dead;
         public float PlayerPosX = 0.0f;
         private void Awake()
         {
