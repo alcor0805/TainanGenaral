@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 namespace NRSUNG
 {
@@ -14,8 +15,12 @@ namespace NRSUNG
         public Text hintMessage;
         public Text gameOverMessage;
         public Text m_timmer;
+        //public Text m_timmerHit;
+        public TextMeshProUGUI m_timmerHit;
+        
         public int m_min;
         public int m_sec;
+        public Button startButton;
         public Button restartButton;
         public Button exitButton;
         private bool timeOut;
@@ -25,10 +30,7 @@ namespace NRSUNG
 
         void Start()
         {
-            //UpdateHintMessage("請輸入 0~99 的數字");
-            NewQuestion();
-            FocusPlayerAnswerUI();
-            StartCoroutine(CountDown());
+            InitStart();
         }
 
         private void Update()
@@ -36,9 +38,23 @@ namespace NRSUNG
             CheckTimeOut();
         }
 
-        void WaitForStart()
+        void InitStart()
         {
+            UpadteGameOverMessage("請按開始按鈕開始遊戲");
+            m_timmer.gameObject.SetActive(false);
+            m_timmerHit.gameObject.SetActive(false);
+            hintMessage.gameObject.SetActive(false);
+            playerAnswerUI.gameObject.SetActive(false);
+            gameOverMessage.gameObject.SetActive(true);
+            restartButton.gameObject.SetActive(false);
+            exitButton.gameObject.SetActive(false);            
+        }
 
+        public void WaitForStart()
+        {
+            NewQuestion();
+            FocusPlayerAnswerUI();
+            StartCoroutine(CountDown());
         }
 
         void CheckTimeOut()
@@ -46,6 +62,8 @@ namespace NRSUNG
             if (timeOut)
             {
                 UpadteGameOverMessage("闖關失敗 !!!");
+                m_timmer.gameObject.SetActive(true);
+                m_timmerHit.gameObject.SetActive(true);
                 hintMessage.gameObject.SetActive(false);
                 playerAnswerUI.gameObject.SetActive(false);
                 gameOverMessage.gameObject.SetActive(true);
@@ -69,10 +87,15 @@ namespace NRSUNG
 
             UpdateHintMessage("請輸入 0~99 的數字");
             correctAnswer = Random.Range(0, 100);
+            m_timmer.gameObject.SetActive(true);
+            m_timmerHit.gameObject.SetActive(true);
+            hintMessage.gameObject.SetActive(true);
+            playerAnswerUI.gameObject.SetActive(true);
+            startButton.gameObject.SetActive(false);
             restartButton.gameObject.SetActive(false);
             exitButton.gameObject.SetActive(false);
             gameOverMessage.gameObject.SetActive(false);
-            playerAnswerUI.gameObject.SetActive(true);
+            
             
         }
 
