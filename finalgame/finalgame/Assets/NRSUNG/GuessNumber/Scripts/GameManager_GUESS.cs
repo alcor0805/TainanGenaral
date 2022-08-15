@@ -41,8 +41,8 @@ namespace NRSUNG
         void InitStart()
         {
             UpadteGameOverMessage("請按開始按鈕開始遊戲");
-            m_timmer.gameObject.SetActive(false);
-            m_timmerHit.gameObject.SetActive(false);
+            m_timmer.gameObject.SetActive(true);
+            m_timmerHit.gameObject.SetActive(true);
             hintMessage.gameObject.SetActive(false);
             playerAnswerUI.gameObject.SetActive(false);
             gameOverMessage.gameObject.SetActive(true);
