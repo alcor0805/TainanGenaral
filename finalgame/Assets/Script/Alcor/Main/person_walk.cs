@@ -6,21 +6,35 @@ namespace Alcor
         #region 資料
         private Rigidbody2D circle;
         private Vector3 move;
+        private Animator ani;
+        private string varWalk = "走路";
 
         #endregion
         #region 功能
+        
         private void OnDisable()
         {
-            circle.MovePosition(circle.transform.position);
-            circle.velocity = Vector3.zero;
+
+            ani.SetBool(varWalk, false);
+            
         }
         private void run() 
         {
+            
             float h = Input.GetAxisRaw("Horizontal");
             float v = Input.GetAxisRaw("Vertical");
-            move.Set(h,0f,v);
+            move.Set(Mathf.Abs( h),0f,v);
             move = move.normalized * 20 * Time.deltaTime;
+            if (move == Vector3.zero)
+            {
+                ani.SetBool(varWalk, false);
+            }
+            else
+            {
+                ani.SetBool(varWalk, true);
+            }
             circle.MovePosition(circle.transform.position+move);
+           
         }
         #endregion
         #region 事件
@@ -32,6 +46,7 @@ namespace Alcor
         private void Awake()
         {
             circle = GetComponent<Rigidbody2D>();
+            ani = GetComponent<Animator>();
         }
         #endregion
     }
