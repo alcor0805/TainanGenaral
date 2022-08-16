@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
+
 namespace NRSUNG
 {
     /// <summary>
@@ -10,10 +13,15 @@ namespace NRSUNG
     /// </summary>
     public class GameManager : MonoBehaviour
     {
-        public GameManager gameManager;
-        //[Header("卡牌清單")]
-        //public List<Card> cardList;  //產生出來的16張卡牌清單
+        public Button startButton;
+        public Button restartButton;
+        public Button exitButton;
+        public TextMeshProUGUI m_timmerHit;
+        public TextMeshProUGUI m_timmer;
+        public TextMeshProUGUI MessageBar;
 
+        public GameManager gameManager;
+        
         [Header("比對卡牌清單")]
         public List<Card> cardComparison;  //欲比對的卡牌清單
 
@@ -31,6 +39,11 @@ namespace NRSUNG
             //AddNewCard(CardPattern.水蜜桃);
             GenerateRandomCards();
             //OpenAllCards();
+        }
+
+        private void InitProgram()
+        {
+
         }
 
         void SetupCardsToBePutIn() //Enum 轉 List
@@ -128,7 +141,8 @@ namespace NRSUNG
                     matchedCardsCount = matchedCardsCount + 2;
                     if (matchedCardsCount >= positions.Length)
                     {
-                        StartCoroutine(ReloadScene());
+                        //StartCoroutine(ReloadScene());
+                        print("恭喜過關");
                     }
                 }
                 else

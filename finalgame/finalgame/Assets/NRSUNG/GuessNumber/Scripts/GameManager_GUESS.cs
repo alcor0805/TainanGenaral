@@ -27,6 +27,8 @@ namespace NRSUNG
         //public TextMesh hintMessage;
         //public Texture hintMessage;
 
+        public static bool isSucessGuessNumber;
+
 
         void Start()
         {
@@ -69,6 +71,7 @@ namespace NRSUNG
                 gameOverMessage.gameObject.SetActive(true);
                 restartButton.gameObject.SetActive(true);
                 exitButton.gameObject.SetActive(true);
+                isSucessGuessNumber = false;
             }
         }
 
@@ -122,6 +125,7 @@ namespace NRSUNG
                 restartButton.gameObject.SetActive(true);
                 exitButton.gameObject.SetActive(true);
                 StopAllCoroutines();
+                isSucessGuessNumber = true;
             }
             else if (playerAnswer > correctAnswer)
             {
