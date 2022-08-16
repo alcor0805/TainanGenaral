@@ -85,8 +85,6 @@ namespace Alcor
         {
             if (isDailog)
             {
-                canvasGroup.interactable = true;
-                canvasGroup.blocksRaycasts = true;
                 StartDialog();
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -121,19 +119,32 @@ namespace Alcor
             }
             if (index_chapter_sentence >= Max_Chapter_sentence)
             {
-                if (index_Chapter == 0)
+                if (System_npc[Npc_ID].eachChapter.Count >= 2)
                 {
-                    isDailog = false;
-                    button_event.SetActive(true);
+                    switch (index_Chapter)
+                    {
+                        case 0:
+                            isDailog = false;
+                            button_event.SetActive(true);
+                            break;
+                        case 1:
+                            isDailog = false;
+                            dialog.SetActive(false);
+                            NPC.SetActive(false);
+                            Role.enabled = true;
+                            Gift();
+                            break;
+                    }
                 }
-                else if (index_Chapter == 1)
+                else if(System_npc[Npc_ID].eachChapter.Count ==1)
                 {
+                    
                     isDailog = false;
                     dialog.SetActive(false);
-                    NPC.SetActive(false);
                     Role.enabled = true;
-                    Gift();
                 }
+
+
 
             }
             return current_content;
@@ -145,7 +156,7 @@ namespace Alcor
                 case "¨ß¤l":
 
                     GameObject carrot = Instantiate(Resources.Load<GameObject>("carrot"));
-                    carrot.transform.position = new Vector3(NPC.transform.position.x,-3.15f,0);
+                    carrot.transform.position = new Vector3(NPC.transform.position.x, -3.15f, 0);
                     carrot.name = "­JÅÚ½³";
                     break;
                 case "ªQ¹«":

@@ -14,6 +14,10 @@ namespace Alcor
         {
             PlayerPrefs.SetFloat("PlayerPosX", GameObject.FindGameObjectWithTag("Player").transform.position.x);
         }
+        public void GetPlayerPosition(int position)
+        {
+            PlayerPrefs.SetFloat("PlayerPosX", position);
+        }
     }
 
 }

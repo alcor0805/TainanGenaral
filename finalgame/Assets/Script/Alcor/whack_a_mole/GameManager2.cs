@@ -13,7 +13,6 @@ namespace Alcor
         private float countDownShowMonsterSeconds;
         int MAX_MONSTERS_ON_SCREEN = 3;
         public List<monster> monsters;
-        public static bool wolf_dead;
         public GameObject setting;
         private List<monster> HiddenMonsters
         {
@@ -82,7 +81,6 @@ namespace Alcor
         {
             InvokeRepeating("CountTime", 1f, 1f);
             wolfstate = wolfState.fail;
-            wolf_dead = false;
             InitScore();
             InitMonsterList();
             HideAllMonsters();
@@ -148,11 +146,6 @@ namespace Alcor
 
 
         public enum wolfState {sucess,fail }
-
-        public void SetIsDead()
-        {
-          wolf_dead = true;
-        }
 
         #endregion
     }
