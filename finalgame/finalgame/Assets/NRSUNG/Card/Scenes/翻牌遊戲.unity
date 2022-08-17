@@ -158,8 +158,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -146.85657, y: 0}
-  m_SizeDelta: {x: 98.3669, y: 50}
+  m_AnchoredPosition: {x: -272.03387, y: 0}
+  m_SizeDelta: {x: 165.331, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &27895123
 MonoBehaviour:
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00:00
+  m_text: ' 00 : 00'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dfb6e5145775fe14696c745c77326bd8, type: 2}
   m_sharedMaterial: {fileID: -147746088350806325, guid: dfb6e5145775fe14696c745c77326bd8, type: 2}
@@ -470,7 +470,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 273345284}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1870493837}
+        m_TargetAssemblyTypeName: NRSUNG.GameManager, Assembly-CSharp
+        m_MethodName: ExitScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &273345284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1110,7 +1122,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 494.17, y: 50}
+  m_SizeDelta: {x: 577.6932, y: 50}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1019853222
 MonoBehaviour:
@@ -1323,7 +1335,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1273769450}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1870493837}
+        m_TargetAssemblyTypeName: NRSUNG.GameManager, Assembly-CSharp
+        m_MethodName: WaitForStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1273769450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1420,7 +1444,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u5269\u9918\u6642\u9593 : "
+  m_text: "\u5269\u9918\u6642\u9593  "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dfb6e5145775fe14696c745c77326bd8, type: 2}
   m_sharedMaterial: {fileID: -147746088350806325, guid: dfb6e5145775fe14696c745c77326bd8, type: 2}
@@ -1860,13 +1884,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c376a92663bb9244289681434884c862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_min: 1
+  m_sec: 0
   startButton: {fileID: 1273769449}
   restartButton: {fileID: 2002188807}
   exitButton: {fileID: 273345283}
   m_timmerHit: {fileID: 1337215530}
   m_timmer: {fileID: 27895123}
-  MessageBar: {fileID: 1019853222}
-  gameManager: {fileID: 0}
+  hintmessage: {fileID: 1019853222}
+  gameManager: {fileID: 1870493837}
   cardComparison: []
   cardsToBePutIn: 
   positions:
@@ -2228,7 +2254,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2002188808}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1870493837}
+        m_TargetAssemblyTypeName: NRSUNG.GameManager, Assembly-CSharp
+        m_MethodName: ReloadScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2002188808
 MonoBehaviour:
   m_ObjectHideFlags: 0

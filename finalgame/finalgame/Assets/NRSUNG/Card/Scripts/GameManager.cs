@@ -13,12 +13,16 @@ namespace NRSUNG
     /// </summary>
     public class GameManager : MonoBehaviour
     {
+        public int m_min;
+        public int m_sec;
         public Button startButton;
         public Button restartButton;
         public Button exitButton;
         public TextMeshProUGUI m_timmerHit;
         public TextMeshProUGUI m_timmer;
-        public TextMeshProUGUI MessageBar;
+        public TextMeshProUGUI hintmessage;
+        private bool timeOut;
+        public static bool isSucessCard;
 
         public GameManager gameManager;
         
@@ -35,15 +39,38 @@ namespace NRSUNG
 
         void Start()
         {
-            //SetupCardsToBePutIn();
-            //AddNewCard(CardPattern.水蜜桃);
-            GenerateRandomCards();
-            //OpenAllCards();
+            //GenerateRandomCards();
+            StopAllCoroutines();
+            InitStart();            
         }
 
-        private void InitProgram()
+        private void Update()
         {
+            CheckTimeOut();
+        }
 
+        public void InitStart()
+        {
+            startButton.gameObject.SetActive(true);
+            restartButton.gameObject.SetActive(false);
+            exitButton.gameObject.SetActive(false);
+            m_timmer.gameObject.SetActive(true);
+            m_timmerHit.gameObject.SetActive(true);
+            hintmessage.gameObject.SetActive(true);
+            UpdateHintMessage("請按開始鍵啟動遊戲");
+        }
+
+        public void WaitForStart()
+        {
+            UpdateHintMessage("");
+            startButton.gameObject.SetActive(false);
+            StartCoroutine(CountDown());
+            GenerateRandomCards();
+        }
+
+        void UpdateHintMessage(string message)
+        {
+            hintmessage.text = message;
         }
 
         void SetupCardsToBePutIn() //Enum 轉 List
@@ -64,17 +91,15 @@ namespace NRSUNG
             GameObject card = Instantiate(Resources.Load<GameObject>("Prefabs/牌"));
             card.GetComponent<Card>().cardPattern = cardPattern;
             card.name = "牌_" + cardPattern.ToString();
-            card.transform.position = positions[positionIndex].position;
-            //AddCardInCardComparision(this);
+            card.transform.position = positions[positionIndex].position;            
             GameObject graphic = Instantiate(Resources.Load<GameObject>("Prefabs/圖"));
             graphic.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Graphics/" + cardPattern.ToString());
             graphic.transform.SetParent(card.transform);//變成牌的子物件
             graphic.transform.localPosition = new Vector3(0, 0, 0.1f);//設定座標
-            graphic.transform.eulerAngles = new Vector3(0, 180, 0);//順著Y軸轉180度 翻牌時不會左右顛倒
-            
+            graphic.transform.eulerAngles = new Vector3(0, 180, 0);//順著Y軸轉180度 翻牌時不會左右顛倒            
         }
 
-        void GenerateRandomCards() //發牌
+        public void GenerateRandomCards() //發牌
         {
             int positionIndex = 0;
             for (int i = 0; i < 2; i++)
@@ -89,19 +114,14 @@ namespace NRSUNG
                     // 抽牌
                     // 0到8之間產生亂數,最小是0 & 最大是7
                     int randomNumber = UnityEngine.Random.Range(0, maxRandomNumber);
-
                     
                     AddNewCard(cardsToBePutIn[randomNumber], positionIndex);
-                    //AddCardInCardComparision();
-                    //cardList.Add(cardsToBePutIn[randomNumber]);
-                    //print(cardsToBePutIn[randomNumber]);
+                    
                     cardsToBePutIn.RemoveAt(randomNumber);
                     positionIndex++;
                 }
-            }
-        }
-
-        
+            }            
+        }       
 
         public void AddCardInCardComparision(Card card)
         {
@@ -131,6 +151,7 @@ namespace NRSUNG
                 if (cardComparison[0].cardPattern == cardComparison[1].cardPattern)
                 {
                     Debug.Log("兩張牌一樣");
+                    UpdateHintMessage("好棒喔 !");
                     foreach (var card in cardComparison)
                     {
                         card.cardState = CardState.配對成功;
@@ -142,15 +163,17 @@ namespace NRSUNG
                     if (matchedCardsCount >= positions.Length)
                     {
                         //StartCoroutine(ReloadScene());
+                        isSucessCard = true;
                         print("恭喜過關");
+                        UpdateHintMessage("恭喜過關 !!");
+                        StopAllCoroutines();
                     }
                 }
                 else
                 {
                     Debug.Log("兩張牌不一樣");
-                    StartCoroutine(MissMatchCards());
-                    //TurnBackCards();
-                    //cardComparison.Clear();
+                    UpdateHintMessage("喔喔, 不一樣耶 !");
+                    StartCoroutine(MissMatchCards());                    
                 }
             }
         }
@@ -174,39 +197,70 @@ namespace NRSUNG
             }
         }
 
-        /*void OpenAllCards()    //把全部牌翻到正面
-        {
-            foreach (var card in gameManager.positions)
-            {
-                //card.gameObject.transform.eulerAngles = Vector3.zero;
-                card.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
-                //card.cardState = CardState.已翻牌;
-            }
-        }*/
-
-        /*void TurnBackAllCards()    //把全部牌翻到背面
-        {
-            foreach (var card in cardList)
-            {
-                //card.gameObject.transform.eulerAngles = Vector3.zero;
-                card.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
-                card.cardState = CardState.未翻牌;
-            }
-        }*/
-
         IEnumerator MissMatchCards()
         {
             yield return new WaitForSeconds(1.5f);
             TurnBackCards();
             ClearCardComparison();
         }
-
+        /*
         IEnumerator ReloadScene()
         {
             yield return new WaitForSeconds(3);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }*/
+
+        IEnumerator CountDown()
+        {
+            timeOut = false;
+            m_timmer.text = string.Format($"{m_min.ToString("00")}" + " : " + $"{m_sec.ToString("00")}");
+            int m_seconds = (m_min * 60) + m_sec;
+            while (m_seconds > 0 && !timeOut)
+            {
+                yield return new WaitForSeconds(1);
+                m_seconds--;
+                m_sec--;
+
+                if (m_sec < 0 && m_min > 0)
+                {
+                    m_min -= 1;
+                    m_sec = 59;
+                }
+                else if (m_sec < 0 && m_min == 0)
+                {
+                    m_sec = 0;
+                }
+                m_timmer.text = string.Format($"{m_min.ToString("00")}" + " : " + $"{m_sec.ToString("00")}");
+            }
+            timeOut = true;
+            yield return new WaitForSeconds(1);
+            //Time.timeScale = 0;
         }
 
+        void CheckTimeOut()
+        {
+            if (timeOut)
+            {
+                UpdateHintMessage("闖關失敗 !!!");
+                m_timmer.gameObject.SetActive(true);
+                m_timmerHit.gameObject.SetActive(true);                
+                restartButton.gameObject.SetActive(true);
+                exitButton.gameObject.SetActive(true);
+                isSucessCard = false;
+                StopAllCoroutines();
+            }
+        }
+
+        public void ReloadScene()
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
+
+        public void ExitScene()
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }
 
