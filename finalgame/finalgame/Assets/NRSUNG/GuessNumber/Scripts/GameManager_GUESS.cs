@@ -113,6 +113,7 @@ namespace NRSUNG
             if (!CanGetInputNumber())
             {
                 UpdateHintMessage("只能輸入數字喔");
+                FocusPlayerAnswerUI();
                 return;
             }
 

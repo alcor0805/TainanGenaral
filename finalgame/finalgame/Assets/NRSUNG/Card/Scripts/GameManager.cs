@@ -163,10 +163,11 @@ namespace NRSUNG
                     if (matchedCardsCount >= positions.Length)
                     {
                         //StartCoroutine(ReloadScene());
-                        isSucessCard = true;
+                        //isSucessCard = true;
                         print("恭喜過關");
-                        UpdateHintMessage("恭喜過關 !!");
-                        StopAllCoroutines();
+                        //UpdateHintMessage("恭喜過關 !!");
+                        //StopAllCoroutines();
+                        Success();
                     }
                 }
                 else
@@ -249,6 +250,17 @@ namespace NRSUNG
                 isSucessCard = false;
                 StopAllCoroutines();
             }
+        }
+
+        void Success()
+        {
+            UpdateHintMessage("恭喜過關 !!");
+            m_timmer.gameObject.SetActive(true);
+            m_timmerHit.gameObject.SetActive(true);
+            restartButton.gameObject.SetActive(true);
+            exitButton.gameObject.SetActive(true);
+            isSucessCard = true;
+            StopAllCoroutines();
         }
 
         public void ReloadScene()
