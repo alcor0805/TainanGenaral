@@ -8,16 +8,16 @@ namespace Alcor
     public class GameManager_shaft : MonoBehaviour
     {
 
-        #region ¸ê®Æ
+        #region ï¿½ï¿½ï¿½
         #endregion
-        #region ¥\¯à
+        #region ï¿½\ï¿½ï¿½
         #endregion
-        #region ¨Æ¥ó
-        public GameObject Setting_canva;
+        #region ï¿½Æ¥ï¿½
+        public GameObject gameObject;
         public GameObject player;
         public CameraManager cameraManager;
         private GroundManager groundManager;
-        [SerializeField, Header("¼ÐÃD¤å¦r")]
+        [SerializeField, Header("ï¿½ï¿½ï¿½Dï¿½ï¿½r")]
         private TextMeshProUGUI text;
         public static State state=State.fail;
         public static bool dead;
@@ -31,27 +31,28 @@ namespace Alcor
         {
             
             dead = false;
-            Setting_canva.SetActive(false);
-            
+
+            gameObject.SetActive(false);
+
         }
         private void Update()
         {
             if (Player.isDead||groundManager.CountLowerGroundFloor()>=10)
             {
                 player.SetActive(false);
-                Setting_canva.SetActive(true);
+                gameObject.SetActive(true);
                 cameraManager.enabled = false;
                 if (groundManager.CountLowerGroundFloor() >= 10)
                 {
                     Player.isDead = false;
                     state = State.sucess;
-                    text.text = "¦¨¥\¹LÃö¤F!!!";
+                    text.text = "ï¿½ï¿½ï¿½\ï¿½Lï¿½ï¿½ï¿½F!!!";
                 }
                 else 
                 {
                     Player.isDead = false;
                     state = State.fail;
-                    text.text = "¦A¸Õ¤@¦¸§a!!";
+                    text.text = "ï¿½Aï¿½Õ¤@ï¿½ï¿½ï¿½a!!";
                 }
                 
             }

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 96f026a0f3775a64d858384d7d25bc2c
+<<<<<<<< HEAD:finalgame/Assets/Scenes/Alcor/Start.unity.meta
+guid: 376c3e69b3da3654f9d8ad246908521a
+========
+guid: 25deac4dffa522f438e8d76c28c7792f
+>>>>>>>> 8a570ce6d0c9dcefaa54896b5a23edca0b0259c5:finalgame/Assets/Scenes/SampleScene.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

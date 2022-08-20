@@ -1,5 +1,10 @@
 fileFormatVersion: 2
-guid: cf4d39bd93a28d2468ed81fa5cd9fdae
+<<<<<<<< HEAD:finalgame/Assets/Matriel_Game/iris/iris/free_license.meta
+guid: 15099ec3d30818442abaad31eba66ccb
+========
+guid: bd6c4ac2e0a8ab7428006a8130c295bc
+folderAsset: yes
+>>>>>>>> 8a570ce6d0c9dcefaa54896b5a23edca0b0259c5:finalgame/Assets/NRSUNG/Card.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

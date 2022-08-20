@@ -8,11 +8,12 @@ namespace Alcor
 {
     public class GameManager2 : MonoBehaviour
     {
-        #region ¸ê®Æ
+        #region ï¿½ï¿½ï¿½
         private float showMonsterIntervalSeconds = 1;
         private float countDownShowMonsterSeconds;
         int MAX_MONSTERS_ON_SCREEN = 3;
         public List<monster> monsters;
+
         public GameObject setting;
         private List<monster> HiddenMonsters
         {
@@ -32,14 +33,14 @@ namespace Alcor
         }
         public Text score;
         int scoreNumber = 0;
-        [SerializeField, Header("¼ÐÃD¤å¦r")]
+        [SerializeField, Header("ï¿½ï¿½ï¿½Dï¿½ï¿½r")]
         private TextMeshProUGUI final_text;
-        [SerializeField, Header("¤w¹L¥h®É¶¡¤å¦r")]
+        [SerializeField, Header("ï¿½wï¿½Lï¿½hï¿½É¶ï¿½ï¿½ï¿½r")]
         private TextMeshProUGUI Time_text;
         private float Timing;
         public static wolfState wolfstate=wolfState.fail;
         #endregion
-        #region ¥\¯à
+        #region ï¿½\ï¿½ï¿½
         public void HideMonster(GameObject monster)
         {
             monster.SetActive(false);
@@ -76,7 +77,7 @@ namespace Alcor
             monsters = GameObject.FindObjectsOfType<monster>().ToList();
         }
         #endregion
-        #region ¨Æ¥ó
+        #region ï¿½Æ¥ï¿½
         private void Start()
         {
             InvokeRepeating("CountTime", 1f, 1f);
@@ -87,12 +88,12 @@ namespace Alcor
             ResetShowMonsterSeconds();
         }
         /// <summary>
-        /// ­p®É¾¹
+        /// ï¿½pï¿½É¾ï¿½
         /// </summary>
         private void CountTime()
         {
             Timing += 1;
-            Time_text.text = "¤w¹L¥h "+Timing.ToString()+" ¬í";
+            Time_text.text = "ï¿½wï¿½Lï¿½h "+Timing.ToString()+" ï¿½ï¿½";
         }
         private void ResetShowMonsterSeconds()
         {
@@ -122,12 +123,12 @@ namespace Alcor
                 if (scoreNumber==100)
                 {
                     wolfstate = wolfState.sucess;
-                    final_text.text = "®¥³ß¹LÃö";
+                    final_text.text = "ï¿½ï¿½ï¿½ß¹Lï¿½ï¿½";
                 }
                 else
                 {
                     wolfstate = wolfState.fail;
-                    final_text.text = "¥¢±Ñ°Õ!¦A­«¨Ó¤@¦¸§a!";
+                    final_text.text = "ï¿½ï¿½ï¿½Ñ°ï¿½!ï¿½Aï¿½ï¿½ï¿½Ó¤@ï¿½ï¿½ï¿½a!";
                 }
             }
         }
