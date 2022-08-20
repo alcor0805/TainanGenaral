@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 namespace Alcor
 {
@@ -11,8 +9,8 @@ namespace Alcor
         #endregion
         #region ¨Æ¥ó
         #endregion
-        public float forceX;
-        public static bool isDead;
+        /*public float forceX;
+        
         Rigidbody2D playerRigidbody2D;
         readonly float toLeft = -1;
         readonly float toRight = 1;
@@ -24,20 +22,23 @@ namespace Alcor
         }
         private void Update()
         {
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                directionX = toLeft;
-            }
-            else if (Input.GetKey(KeyCode.RightArrow))
-            {
-                directionX = toRight;
-            }
-            else
-            {
-                directionX = stop;
-            }
+            
             Vector2 newDirection = new(directionX, 0);
             playerRigidbody2D.AddForce(newDirection*forceX);
+        }
+    }*/
+        private float Move;
+        private Rigidbody2D rig;
+        private float Speed = 3f;
+        public static bool isDead;
+        private void Start()
+        {
+            rig = GetComponent<Rigidbody2D>();
+        }
+        private void Update()
+        {
+            Move = Input.GetAxis("Horizontal");
+            transform.Translate(new Vector3(Move*Speed*Time.deltaTime,0, 0));
         }
     }
 }

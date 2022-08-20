@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 namespace Alcor 
 {
     public class GameManager_shaft : MonoBehaviour
@@ -16,31 +16,53 @@ namespace Alcor
         public GameObject Setting_canva;
         public GameObject player;
         public CameraManager cameraManager;
+        private GroundManager groundManager;
+        [SerializeField, Header("標題文字")]
+        private TextMeshProUGUI text;
+        public static State state=State.fail;
         public static bool dead;
 
+        private void Awake()
+        {
+            state = State.fail;
+            groundManager = GetComponent<GroundManager>();
+        }
         private void Start()
         {
+            
             dead = false;
             Setting_canva.SetActive(false);
+            
         }
         private void Update()
         {
-            if (Player.isDead)
+            if (Player.isDead||groundManager.CountLowerGroundFloor()>=10)
             {
                 player.SetActive(false);
                 Setting_canva.SetActive(true);
                 cameraManager.enabled = false;
-                Player.isDead = false;
+                if (groundManager.CountLowerGroundFloor() >= 10)
+                {
+                    Player.isDead = false;
+                    state = State.sucess;
+                    text.text = "成功過關了!!!";
+                }
+                else 
+                {
+                    Player.isDead = false;
+                    state = State.fail;
+                    text.text = "再試一次吧!!";
+                }
+                
             }
         }
-        public void ReloadScene() 
-        {
-            SceneManager.LoadScene(1);
-        }
-        public void MainScene()
+        public void SetIsDead()
         {
             dead = true;
-            SceneManager.LoadScene(0);
+        }
+        public enum State 
+        {
+            sucess,fail
         }
         #endregion
     }

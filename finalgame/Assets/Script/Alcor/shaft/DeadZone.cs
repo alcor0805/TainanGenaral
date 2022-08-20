@@ -15,7 +15,7 @@ namespace Alcor
             if (other.gameObject.CompareTag("Player"))
             {
                 Player.isDead = true;
-                //ebug.Break();
+                //Debug.Break();
             }
         }
         #endregion
