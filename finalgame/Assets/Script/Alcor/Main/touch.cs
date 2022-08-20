@@ -5,8 +5,7 @@ namespace Alcor
 {
     public class touch : MonoBehaviour
     {
-        #region ï¿½ï¿½ï¿½
-
+        #region ¸ê®Æ
 
 
         [SerializeField]
@@ -19,43 +18,14 @@ namespace Alcor
         public int CurrentChapter = 0;
 
         #endregion
-        #region ï¿½\ï¿½ï¿½
+        #region ¥\¯à
         public void NOEvent()
         {
             person_Walk.enabled = true;
-
-        private GameObject square;
-        [SerializeField]
-        private person_walk person_Walk;
-        [SerializeField]
-        private TextMeshProUGUI dialogtext;
-        [SerializeField]
-
-        private GameObject canvas;
-
-        private helpcanva helpcanva;
-        [SerializeField]
-        private CanvasGroup canvas;
-
-        #endregion
-        #region ï¿½\ï¿½ï¿½
-        public void YesEvent()
-        {
-            person_Walk.enabled = true;
-            canvas.alpha = 0;
-            canvas.interactable = false;
-            canvas.blocksRaycasts = false;
-        }
-        public void NOEvent()
-        {
-            person_Walk.enabled = true;
-            canvas.alpha = 0;
-            canvas.interactable = false;
-            canvas.blocksRaycasts = false;
+            canvas.SetActive(false);
         }
         #endregion
-        #region ï¿½Æ¥ï¿½
-
+        #region ¨Æ¥ó
 
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -70,34 +40,11 @@ namespace Alcor
 
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.gameObject.CompareTag("Player") && other.name.Contains("Circle")) ;
-            {
-                person_Walk.enabled = false;
-                canvas.SetActive(true);
-
-                helpcanva.inputtext = "can you help me??";
-                helpcanva.enabled = true;
-
-
-
-
-            }
-
-        }
-
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.gameObject.CompareTag("Player") && other.GetType().ToString() == "UnityEngine.CircleCollider2D")
             {
-
                 canvas.SetActive(false);
-
-                canvas.alpha = 0;
-                canvas.interactable = false;
-                canvas.blocksRaycasts = false;
-
             }
         }
 
@@ -105,5 +52,3 @@ namespace Alcor
 
     }
 }
-
-

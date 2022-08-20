@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:finalgame/Assets/Script/Alcor/Main/ChanegeScene.cs.meta
-guid: a28905d4ab2bf1549b397a3a42a4a6b2
-========
-guid: e0dd76f2d5e2fd240ace21251718c64c
->>>>>>>> 8a570ce6d0c9dcefaa54896b5a23edca0b0259c5:finalgame/Assets/Script/Alcor/Main/helpcanva.cs.meta
+guid: 8bf83d26af9940a4eb1790b19f6505d5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
