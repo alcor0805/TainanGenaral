@@ -13,7 +13,7 @@ namespace Alcor
         #region 功能
         #endregion
         #region 事件
-        public GameObject Setting_canva;
+        public GameObject gameObject;
         public GameObject player;
         public CameraManager cameraManager;
         public static bool dead;
@@ -21,14 +21,14 @@ namespace Alcor
         private void Start()
         {
             dead = false;
-            Setting_canva.SetActive(false);
+            gameObject.SetActive(false);
         }
         private void Update()
         {
             if (Player.isDead)
             {
                 player.SetActive(false);
-                Setting_canva.SetActive(true);
+                gameObject.SetActive(true);
                 cameraManager.enabled = false;
                 Player.isDead = false;
             }

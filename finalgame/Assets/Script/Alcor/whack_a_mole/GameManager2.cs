@@ -13,7 +13,7 @@ namespace Alcor
         private float countDownShowMonsterSeconds;
         int MAX_MONSTERS_ON_SCREEN = 3;
         public List<monster> monsters;
-        public static bool wolf_dead;
+        public bool wolf_dead;
         public GameObject setting;
         private List<monster> HiddenMonsters
         {
