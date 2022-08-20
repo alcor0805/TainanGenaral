@@ -5,6 +5,7 @@ namespace Alcor
 {
     public class ChanegeScene : MonoBehaviour
     {
+        private string[] Gift_name = { "­JÅÚ½³", "Ä«ªG" };
         public void ChanageScene(string name)
         {
             
@@ -18,6 +19,15 @@ namespace Alcor
         {
             PlayerPrefs.SetFloat("PlayerPosX", position);
         }
+        public void GetGiftStatus()
+        {
+            for (int i = 0; i < Gift_name.Length; i++)
+            {
+                PlayerPrefs.SetInt(Gift_name[i], 0);
+            }
+            
+        }
+ 
     }
 
 }

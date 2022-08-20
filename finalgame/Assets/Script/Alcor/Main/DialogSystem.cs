@@ -158,12 +158,14 @@ namespace Alcor
                     GameObject carrot = Instantiate(Resources.Load<GameObject>("carrot"));
                     carrot.transform.position = new Vector3(NPC.transform.position.x, -3.15f, 0);
                     carrot.name = "­JÅÚ½³";
+                    PlayerPrefs.SetInt(dialog.name, 0);
                     break;
                 case "ªQ¹«":
 
                     GameObject apple = Instantiate(Resources.Load<GameObject>("apple"));
                     apple.transform.position = new Vector3(NPC.transform.position.x, -3.9f, 0);
                     apple.name = "Ä«ªG";
+                    PlayerPrefs.SetInt(dialog.name, 0);
                     break;
             }
         }

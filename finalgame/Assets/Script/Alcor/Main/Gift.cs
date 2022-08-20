@@ -18,6 +18,7 @@ namespace Alcor
             gameObject.SetActive(false);
             tip.text = "撿到掉落物: "+gameObject.name+" ，可以拿去奶奶家做料理了";
             ani.SetBool(Gotcha, true);
+            PlayerPrefs.SetInt(gameObject.name, 1);
             Invoke("NoneText", 3f);
         }
         void NoneText()
