@@ -10,7 +10,7 @@ namespace Alcor
         
         public float PlayerPosX = 0.0f;
         private GameObject[] NPC;
-        private string[] NPC_name = { "¨ß¤l", "ªQ¹«", "±öªá³À", "¥xÆW¶Âºµ" };
+        private string[] NPC_name = { "¨ß¤l", "ªQ¹«" };
         private string[] Gift_name = { "­JÅÚ½³", "Ä«ªG" };
         private Animator[] ani=new Animator[2];
         private void Awake()
@@ -30,6 +30,7 @@ namespace Alcor
         {
             for (int i = 0; i < NPC_name.Length; i++)
             {
+               
                 bool status=PlayerPrefs.GetInt(NPC_name[i])==0 ? true : false;
                 if (status)
                 {

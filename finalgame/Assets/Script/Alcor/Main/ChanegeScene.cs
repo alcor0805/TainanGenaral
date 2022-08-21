@@ -5,6 +5,7 @@ namespace Alcor
 {
     public class ChanegeScene : MonoBehaviour
     {
+        private string[] NPC_name = { "¨ß¤l", "ªQ¹«" };
         private string[] Gift_name = { "­JÅÚ½³", "Ä«ªG" };
         public void ChanageScene(string name)
         {
@@ -26,6 +27,13 @@ namespace Alcor
                 PlayerPrefs.SetInt(Gift_name[i], 0);
             }
             
+        }
+        public void InitNPCStatues()
+        {
+            for (int i = 0; i < NPC_name.Length; i++)
+            {
+               PlayerPrefs.SetInt( NPC_name[i],1);
+            }
         }
  
     }
