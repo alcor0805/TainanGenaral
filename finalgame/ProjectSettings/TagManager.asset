@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Score
   - Gift
+  - Tips
   layers:
   - Default
   - TransparentFX
