@@ -47,12 +47,12 @@ namespace Alcor
         private void InitScore()
         {
 
-            score.text = "0";
+            score.text = "分數: 0";
         }
         public void AddScore()
         {
             scoreNumber += 10;
-            score.text = scoreNumber.ToString();
+            score.text ="分數: "+scoreNumber.ToString();
         }
         private void HideAllMonsters()
         {

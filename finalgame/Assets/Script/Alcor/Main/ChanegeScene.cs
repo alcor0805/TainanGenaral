@@ -16,24 +16,21 @@ namespace Alcor
         {
             PlayerPrefs.SetFloat("PlayerPosX", GameObject.FindGameObjectWithTag("Player").transform.position.x);
         }
-        public void GetPlayerPosition(int position)
+        public void ExitGame()
         {
-            PlayerPrefs.SetFloat("PlayerPosX", position);
+            Application.Quit();
         }
-        public void GetGiftStatus()
+        public void InitAllStatus()
         {
             for (int i = 0; i < Gift_name.Length; i++)
             {
                 PlayerPrefs.SetInt(Gift_name[i], 0);
             }
-            
-        }
-        public void InitNPCStatues()
-        {
             for (int i = 0; i < NPC_name.Length; i++)
             {
-               PlayerPrefs.SetInt( NPC_name[i],1);
+                PlayerPrefs.SetInt(NPC_name[i], 1);
             }
+            PlayerPrefs.SetFloat("PlayerPosX", 0);
         }
  
     }
