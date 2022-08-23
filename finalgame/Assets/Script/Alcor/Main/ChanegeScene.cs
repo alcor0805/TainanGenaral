@@ -32,6 +32,13 @@ namespace Alcor
             }
             PlayerPrefs.SetFloat("PlayerPosX", 0);
         }
+        public void IsInit()
+        {
+            if (PlayerPrefs.GetFloat("PlayerPosX") == 0)
+            {
+                InitAllStatus();
+            }
+        }
  
     }
 
