@@ -13,12 +13,17 @@ namespace Alcor
         private string[] NPC_name = { "¨ß¤l", "ªQ¹«" };
         private string[] Gift_name = { "­JÅÚ½³", "Ä«ªG" };
         private Animator[] ani=new Animator[2];
+       
         private void Awake()
         {
             
             SetPosition();
             SetNpcStatue();
             SetGIft();
+            if (PlayerPrefs.GetFloat("PlayerPosX") == 0)
+            {
+                InitGame();
+            }    
         }
 
         private void SetPosition()
@@ -50,6 +55,11 @@ namespace Alcor
                     ani[i].SetBool("ÅÜ«G", true);
                 }
             }
+        }
+        private void InitGame()
+        {
+            GameManager2.wolfstate=GameManager2.wolfState.fail;
+            GameManager_shaft.state = GameManager_shaft.State.fail;
         }
 
     }

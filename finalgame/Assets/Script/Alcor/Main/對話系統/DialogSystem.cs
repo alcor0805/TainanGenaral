@@ -19,7 +19,7 @@ namespace Alcor
         public int Npc_ID;
         public GameObject button_event;
         public CanvasGroup canvasGroup;
-        int index_Chapter = 0;
+        public int index_Chapter = 0;
         int index_sentence = 0;
         int index_chapter_sentence = 0;
         public GameObject dialog;
