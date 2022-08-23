@@ -24,7 +24,7 @@ namespace Alcor
         private void SetPosition()
         {
             PlayerPosX = PlayerPrefs.GetFloat("PlayerPosX");
-            gameObject.transform.position = new Vector3(PlayerPosX, -0.5f, 0);
+            gameObject.transform.position = new Vector3(PlayerPosX, -2f, 0);
         }
         private void SetNpcStatue()
         {

@@ -13,7 +13,7 @@ namespace Alcor
         {
             if (collision.tag == "Player")
             {
-                finaltext.text = "阿嬤祝福你身體健康萬事如意，不要被黑貓賣掉";
+                finaltext.text = "阿嬤祝福你身體健康萬事如意";
                 FindObjectOfType<person_walk>().enabled = false;
                 PlayerPrefs.SetFloat("PlayerPosX", 0);
                 ResetStatus();

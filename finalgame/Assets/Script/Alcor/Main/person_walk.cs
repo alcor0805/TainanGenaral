@@ -24,7 +24,7 @@ namespace Alcor
             float h = Input.GetAxisRaw("Horizontal");
             float v = Input.GetAxisRaw("Vertical");
             move.Set(Mathf.Abs( h),0f,v);
-            move = move.normalized * 20 * Time.deltaTime;
+            move = move.normalized * 6 * Time.deltaTime;
             if (move == Vector3.zero)
             {
                 ani.SetBool(varWalk, false);
