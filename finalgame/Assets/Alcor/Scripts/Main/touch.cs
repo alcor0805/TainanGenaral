@@ -36,6 +36,7 @@ namespace Alcor
                 dataNPC.IndexPart = CurrentChapter;
                 person_Walk.enabled = false;
                 canvas.SetActive(true);
+                Destroy(gameObject);
             }
 
         }
