@@ -6,16 +6,16 @@ namespace Alcor
     public class person_walk : MonoBehaviour
     {
         #region 資料
-        private Rigidbody2D person;
         private Vector3 move;
         private Animator ani;
         private string varWalk = "走路";
-        private int distance = 10;
         float MinX=-10, MaxX=66;
         private Elf_Move Elf;
+        public float faceDirc;
+       
         #endregion
         #region 功能
-        
+
         private void OnDisable()
         {
 
@@ -29,7 +29,7 @@ namespace Alcor
         {
             
             float h = Input.GetAxisRaw("Horizontal");
-            float faceDirc = Input.GetAxisRaw("Horizontal");
+            faceDirc = Input.GetAxisRaw("Horizontal");
             move.Set(h,0,0);
 
             if (faceDirc != 0)
@@ -59,7 +59,6 @@ namespace Alcor
         private void Awake()
         {
             Elf = FindObjectOfType<Elf_Move>();
-            person = GetComponent<Rigidbody2D>();
             ani = GetComponent<Animator>();
         }
         #endregion
