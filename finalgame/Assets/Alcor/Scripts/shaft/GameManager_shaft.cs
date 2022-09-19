@@ -36,12 +36,12 @@ namespace Alcor
         }
         private void Update()
         {
-            if (Player.isDead||groundManager.CountLowerGroundFloor()>=10)
+            if (Player.isDead||groundManager.CountLowerGroundFloor()>=50)
             {
                 player.SetActive(false);
                 Setting_canva.SetActive(true);
                 cameraManager.enabled = false;
-                if (groundManager.CountLowerGroundFloor() >= 10)
+                if (groundManager.CountLowerGroundFloor() >= 50)
                 {
                     Player.isDead = false;
                     state = State.sucess;

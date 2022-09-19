@@ -14,6 +14,7 @@ namespace Alcor
         int MAX_MONSTERS_ON_SCREEN = 3;
         public List<monster> monsters;
         public GameObject setting;
+
         private List<monster> HiddenMonsters
         {
             get
@@ -38,11 +39,13 @@ namespace Alcor
         private TextMeshProUGUI Time_text;
         private float Timing;
         public static wolfState wolfstate=wolfState.fail;
+        public GameObject effect;
         #endregion
         #region е\пр
         public void HideMonster(GameObject monster)
         {
             monster.SetActive(false);
+           
         }
         private void InitScore()
         {
@@ -102,6 +105,7 @@ namespace Alcor
         {
             get
             {
+                
                 int result = 0;
                 foreach (var m in monsters)
                 {
