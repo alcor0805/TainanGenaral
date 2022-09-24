@@ -7,6 +7,7 @@ namespace Alcor
         public GameObject elf;
         private void Awake()
         {
+            
             if (PlayerPrefs.GetFloat("PlayerPosX") == 0)
             {
                 elf.SetActive(true);
