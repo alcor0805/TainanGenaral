@@ -9,7 +9,7 @@ namespace Alcor
         private Vector3 move;
         private Animator ani;
         private string varWalk = "¨«¸ô";
-        float MinX=-10, MaxX=66;
+        float MinX=-13, MaxX=111;
         private Elf_Move Elf;
         public float faceDirc;
        

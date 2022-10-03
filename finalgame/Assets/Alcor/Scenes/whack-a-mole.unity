@@ -651,7 +651,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6aa653067786cbf4cbd74f4c0fce3594, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -833,7 +833,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6aa653067786cbf4cbd74f4c0fce3594, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1554,7 +1554,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6aa653067786cbf4cbd74f4c0fce3594, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1655,7 +1655,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6aa653067786cbf4cbd74f4c0fce3594, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1753,6 +1753,7 @@ GameObject:
   - component: {fileID: 1211952491}
   - component: {fileID: 1211952490}
   - component: {fileID: 1211952494}
+  - component: {fileID: 1211952495}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1855,6 +1856,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bf83d26af9940a4eb1790b19f6505d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1211952495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211952489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 741eba37832128a4995479f064c21e0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BackGroundMusic: {fileID: 6973386719729003032, guid: 58b6b4bf2f9876f4685dd69d7663628c, type: 3}
 --- !u!1 &1415523130
 GameObject:
   m_ObjectHideFlags: 0
@@ -1955,7 +1969,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6aa653067786cbf4cbd74f4c0fce3594, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2061,7 +2075,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6aa653067786cbf4cbd74f4c0fce3594, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2371,7 +2385,7 @@ PrefabInstance:
     - target: {fileID: 3277914588198060363, guid: 2e43bb42da7a9a34e95840445749dda1, type: 3}
       propertyPath: soundbark
       value: 
-      objectReference: {fileID: 8300000, guid: 021c605af17ec8a4281c4fe3182bdf49, type: 3}
+      objectReference: {fileID: 8300000, guid: 6aa653067786cbf4cbd74f4c0fce3594, type: 3}
     - target: {fileID: 3277914588198060364, guid: 2e43bb42da7a9a34e95840445749dda1, type: 3}
       propertyPath: m_Sprite
       value: 

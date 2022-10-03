@@ -30,13 +30,14 @@ namespace Alcor
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            person_Walk = other.GetComponent<person_walk>();
             if (other.gameObject.CompareTag("Player"))
             {
                 dataNPC.ID = Num;
                 dataNPC.IndexPart = CurrentChapter;
                 person_Walk.enabled = false;
                 canvas.SetActive(true);
-                Destroy(gameObject);
+                
             }
 
         }

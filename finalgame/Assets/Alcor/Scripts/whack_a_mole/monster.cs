@@ -12,8 +12,7 @@ namespace Alcor
         public float currentSecondScreen = 0;
         public bool IsActive => gameObject.activeInHierarchy;
         bool OnScreenTimeUp => currentSecondScreen < 0;
-        public AudioClip soundbark;
-        private AudioSource aud;
+
         #endregion
         #region 功能
         private void Hide()
@@ -49,11 +48,7 @@ namespace Alcor
         }
 		#endregion
 		#region 事件
-		private void Awake()
-		{
-           
-            aud = GetComponent<AudioSource>();
-		}
+		
 		private void Start()
         {
             Init();
@@ -64,6 +59,7 @@ namespace Alcor
                 ResetCurrentSecondsOnScreen();
                 Hide();
             Instantiate(gameManager.effect,gameObject.transform.position,gameManager.effect.transform.rotation);
+
             
         }     
 

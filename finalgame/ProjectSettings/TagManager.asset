@@ -8,6 +8,7 @@ TagManager:
   - Gift
   - Tips
   - Effects
+  - BGM
   layers:
   - Default
   - TransparentFX

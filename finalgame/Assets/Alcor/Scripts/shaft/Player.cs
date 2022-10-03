@@ -31,14 +31,42 @@ namespace Alcor
         private Rigidbody2D rig;
         private float Speed = 3f;
         public static bool isDead;
+        public float faceDirc;
+        private Vector3 move;
+        private Animator ani;
+        private string varWalk = "¨«¸ô";
         private void Start()
         {
+            ani = GetComponent<Animator>();
             rig = GetComponent<Rigidbody2D>();
         }
         private void Update()
         {
-            Move = Input.GetAxis("Horizontal");
-            transform.Translate(new Vector3(Move*Speed*Time.deltaTime,0, 0));
+            run();
+        }
+        public void run()
+        {
+
+            float h = Input.GetAxisRaw("Horizontal");
+            faceDirc = Input.GetAxisRaw("Horizontal");
+            move.Set(h, 0, 0);
+
+            if (faceDirc != 0)
+            {
+                transform.localScale = new Vector3(faceDirc*0.3f, transform.localScale.y, transform.localScale.z);
+            }
+            if (move == Vector3.zero)
+            {
+                ani.SetBool(varWalk, false);
+            }
+            else
+            {
+                ani.SetBool(varWalk, true);
+            }
+            transform.Translate(move * 10 * Time.deltaTime);
+
+           
+
         }
     }
 }

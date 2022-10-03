@@ -58,6 +58,8 @@ namespace Alcor
         }
         private void InitGame()
         {
+
+            
             GameManager2.wolfstate=GameManager2.wolfState.fail;
             GameManager_shaft.state = GameManager_shaft.State.fail;
         }
