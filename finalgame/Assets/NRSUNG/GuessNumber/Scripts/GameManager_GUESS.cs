@@ -27,7 +27,8 @@ namespace NRSUNG
         //public TextMesh hintMessage;
         //public Texture hintMessage;
 
-        public static bool isSucessGuessNumber;
+        //public bool isSucessGuessNumber = false;
+        public static State state = State.fail;
 
 
         void Start()
@@ -71,7 +72,7 @@ namespace NRSUNG
                 gameOverMessage.gameObject.SetActive(true);
                 restartButton.gameObject.SetActive(true);
                 exitButton.gameObject.SetActive(true);
-                isSucessGuessNumber = false;
+                state = State.fail;
             }
         }
 
@@ -126,7 +127,7 @@ namespace NRSUNG
                 restartButton.gameObject.SetActive(true);
                 exitButton.gameObject.SetActive(true);
                 StopAllCoroutines();
-                isSucessGuessNumber = true;
+                state=State.sucess;
             }
             else if (playerAnswer > correctAnswer)
             {
@@ -152,7 +153,7 @@ namespace NRSUNG
 
         public void ExitScene()
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
 
         void FocusPlayerAnswerUI()
@@ -185,6 +186,10 @@ namespace NRSUNG
             timeOut = true;
             yield return new WaitForSeconds(1);
             //Time.timeScale = 0;
+        }
+        public enum State
+        {
+            sucess, fail
         }
     }
 }

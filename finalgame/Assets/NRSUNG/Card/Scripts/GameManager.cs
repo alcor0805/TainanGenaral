@@ -5,6 +5,7 @@ using System;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using Alcor;
 
 namespace NRSUNG
 {
@@ -22,7 +23,7 @@ namespace NRSUNG
         public TextMeshProUGUI m_timmer;
         public TextMeshProUGUI hintmessage;
         private bool timeOut;
-        public static bool isSucessCard;
+        public   static State state =State.fail;
 
         public GameManager gameManager;
         
@@ -247,7 +248,7 @@ namespace NRSUNG
                 m_timmerHit.gameObject.SetActive(true);                
                 restartButton.gameObject.SetActive(true);
                 exitButton.gameObject.SetActive(true);
-                isSucessCard = false;
+                state = State.fail;
                 StopAllCoroutines();
             }
         }
@@ -259,7 +260,7 @@ namespace NRSUNG
             m_timmerHit.gameObject.SetActive(true);
             restartButton.gameObject.SetActive(true);
             exitButton.gameObject.SetActive(true);
-            isSucessCard = true;
+            state = State.sucess;
             StopAllCoroutines();
         }
 
@@ -271,7 +272,11 @@ namespace NRSUNG
 
         public void ExitScene()
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
+        }
+        public enum State
+        {
+            sucess, fail
         }
     }
 }

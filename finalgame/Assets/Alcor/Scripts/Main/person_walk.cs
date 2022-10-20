@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,10 +10,10 @@ namespace Alcor
         private Vector3 move;
         private Animator ani;
         private string varWalk = "走路";
-        float MinX=-13, MaxX=111;
+        float MinX=-13, MaxX=160;
         private Elf_Move Elf;
         public float faceDirc;
-       
+        private TextMeshProUGUI text_tips;
         #endregion
         #region 功能
 
@@ -47,6 +48,8 @@ namespace Alcor
             transform.Translate(move * 10 * Time.deltaTime);
             
             transform.position = new Vector3(Mathf.Clamp(transform.position.x, MinX, MaxX), transform.position.y, transform.position.z);
+            if (gameObject.transform.position.x <= MinX) text_tips.text = "已經到世界盡頭了喔!快回去吧";
+
            
         }
         #endregion
@@ -60,6 +63,7 @@ namespace Alcor
         {
             Elf = FindObjectOfType<Elf_Move>();
             ani = GetComponent<Animator>();
+            text_tips = GameObject.Find("掉落物品提示").GetComponent<TextMeshProUGUI>();
         }
         #endregion
     }

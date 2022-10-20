@@ -5,8 +5,8 @@ namespace Alcor
 {
     public class ChanegeScene : MonoBehaviour
     {
-        private string[] NPC_name = { "¨ß¤l", "ªQ¹«" };
-        private string[] Gift_name = { "­JÅÚ½³", "Ä«ªG" };
+        private string[] NPC_name = { "¨ß¤l", "ªQ¹«","±öªá³À","¥xÆW¶Âºµ" };
+        private string[] Gift_name = { "­JÅÚ½³", "Ä«ªG","³·¾õ","¸Á»e" };
         public void ChanageScene(string name)
         {
             

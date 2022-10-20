@@ -7,7 +7,7 @@ namespace Alcor
     {
         private string[] NPC_name = { "¨ß¤l", "ªQ¹«", "±öªá³À", "¥xÆW¶Âºµ" };
         public TextMeshProUGUI finaltext;
-        private string[] Gift_name = { "­JÅÚ½³", "Ä«ªG" };
+        private string[] Gift_name = { "­JÅÚ½³", "Ä«ªG","³·¾õ","¸Á»e" };
         public GameObject setting;
         private void OnTriggerEnter2D(Collider2D collision)
         {

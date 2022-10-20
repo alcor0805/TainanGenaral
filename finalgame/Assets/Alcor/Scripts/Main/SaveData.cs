@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
-
+using NRSUNG;
 namespace Alcor
 {
     public class SaveData : MonoBehaviour
@@ -10,9 +10,9 @@ namespace Alcor
         
         public float PlayerPosX = 0.0f;
         private GameObject[] NPC;
-        private string[] NPC_name = { "¨ß¤l", "ªQ¹«" };
-        private string[] Gift_name = { "­JÅÚ½³", "Ä«ªG" };
-        private Animator[] ani=new Animator[2];
+        private string[] NPC_name = { "¨ß¤l", "ªQ¹«","±öªá³À","¥xÆW¶Âºµ" };
+        private string[] Gift_name = { "­JÅÚ½³", "Ä«ªG","³·¾õ","¸Á»e" };
+        private Animator[] ani=new Animator[4];
        
         private void Awake()
         {
@@ -62,6 +62,8 @@ namespace Alcor
             
             GameManager2.wolfstate=GameManager2.wolfState.fail;
             GameManager_shaft.state = GameManager_shaft.State.fail;
+            GameManager.state = GameManager.State.fail;
+            GameManager_GUESS.state = GameManager_GUESS.State.fail;
         }
 
     }

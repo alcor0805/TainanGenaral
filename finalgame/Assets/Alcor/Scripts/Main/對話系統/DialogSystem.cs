@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
+using NRSUNG;
 
 namespace Alcor
 {
@@ -26,6 +27,7 @@ namespace Alcor
         private GameObject NPC;
         private person_walk Role;
         public GameObject ShouldbeDes;
+        
         /// <summary>
         /// 判斷是誰的名字，如果符合就使用儲存的static state抉擇讀取章節
         /// </summary>
@@ -49,6 +51,7 @@ namespace Alcor
                 case "松鼠":
                     {
                         NPC = GameObject.Find(dialog.name);
+                        
                         if (GameManager2.wolfstate == GameManager2.wolfState.fail)
                         {
                             index_Chapter = 0;
@@ -59,6 +62,33 @@ namespace Alcor
                         }
                         break;
                     }
+                case "梅花鹿":
+                    {
+                        NPC = GameObject.Find(dialog.name);
+                        if (GameManager.state==GameManager.State.fail)
+                        {
+                            index_Chapter = 0;
+                        }
+                        if (GameManager.state == GameManager.State.sucess)
+                        {
+                            index_Chapter = 1;
+                        }
+                        break;
+                    }
+                case "台灣黑熊":
+                    {
+                        NPC = GameObject.Find(dialog.name);
+                        if (GameManager_GUESS.state==GameManager_GUESS.State.fail)
+                        {
+                            index_Chapter = 0;
+                        }
+                        if (GameManager_GUESS.state == GameManager_GUESS.State.sucess)
+                        {
+                            index_Chapter = 1;
+                        }
+                        break;
+                    }
+
 
             }
 
@@ -167,6 +197,18 @@ namespace Alcor
                         ShouldbeDes.SetActive(false);
                     }
                     break;
+                case "梅花鹿":
+                    if (current_content == System_npc[Npc_ID].eachChapter[1].eachPart_Sentences[2].sentence[0])
+                    {
+                        ShouldbeDes.SetActive(false);
+                    }
+                    break;
+                case "台灣黑熊":
+                    if (current_content == System_npc[Npc_ID].eachChapter[1].eachPart_Sentences[2].sentence[0])
+                    {
+                        ShouldbeDes.SetActive(false);
+                    }
+                    break;
             }
             return current_content;
         }
@@ -186,6 +228,20 @@ namespace Alcor
                     GameObject apple = Instantiate(Resources.Load<GameObject>("apple"));
                     apple.transform.position = new Vector3(NPC.transform.position.x, -3.9f, 0);
                     apple.name = "蘋果";
+                    PlayerPrefs.SetInt(dialog.name, 0);
+                    break;
+                case "梅花鹿":
+
+                    GameObject sled = Instantiate(Resources.Load<GameObject>("sled"));
+                    sled.transform.position = new Vector3(NPC.transform.position.x, -3.9f, 0);
+                    sled.name = "雪橇";
+                    PlayerPrefs.SetInt(dialog.name, 0);
+                    break;
+                case "台灣黑熊":
+
+                    GameObject honey = Instantiate(Resources.Load<GameObject>("honey"));
+                    honey.transform.position = new Vector3(NPC.transform.position.x, -3.9f, 0);
+                    honey.name = "蜂蜜";
                     PlayerPrefs.SetInt(dialog.name, 0);
                     break;
             }
