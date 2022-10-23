@@ -192,7 +192,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 924a1404c40b78b40a4b253b1199f5f9, type: 3}
+    m_Font: {fileID: 12800000, guid: e7cb444652d83dd42beb1d0d88b2b643, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -394,7 +394,7 @@ MonoBehaviour:
   m_text: "\u5DF2\u904E\u53BB 0 \u79D2"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d427e15768624b46855a6b051ec5391, type: 2}
-  m_sharedMaterial: {fileID: -737929156707141990, guid: 7d427e15768624b46855a6b051ec5391, type: 2}
+  m_sharedMaterial: {fileID: -4769746042792436411, guid: 7d427e15768624b46855a6b051ec5391, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

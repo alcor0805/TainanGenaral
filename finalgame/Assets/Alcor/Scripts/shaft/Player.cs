@@ -29,7 +29,7 @@ namespace Alcor
     }*/
         private float Move;
         private Rigidbody2D rig;
-        private float Speed = 3f;
+        public float Speed = 3f;
         public static bool isDead;
         public float faceDirc;
         private Vector3 move;

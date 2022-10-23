@@ -71,7 +71,7 @@ namespace Alcor
             newGround.transform.position = new Vector3(NewGroundPositionX(), NewGroundPositionY(), 0);
             grounds.Add(newGround.transform);
             groundNumber++;
-            newGround.name = "地板" + groundNumber;
+            newGround.name = "天空" + groundNumber;
         }
         public float CountLowerGroundFloor() 
         {
@@ -83,7 +83,7 @@ namespace Alcor
 
         void DisplayCountFloor() 
         {
-            displayCountFloor.text = "地下" + CountLowerGroundFloor().ToString("0000") ;
+            displayCountFloor.text = "天空" + CountLowerGroundFloor().ToString("0000") ;
         }
         float NewGroundPositionX ()
         {
